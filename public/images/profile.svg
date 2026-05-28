@@ -1,0 +1,7 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="300" rx="150" fill="#0c1113"/>
+  <circle cx="150" cy="150" r="148" stroke="rgba(102,242,194,0.22)" stroke-width="2"/>
+  <circle cx="150" cy="120" r="40" fill="rgba(102,242,194,0.1)"/>
+  <ellipse cx="150" cy="210" rx="55" ry="35" fill="rgba(102,242,194,0.06)"/>
+  <text x="150" y="270" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-size="10" font-family="monospace" letter-spacing="3">AUGUSTINE CHIMA</text>
+</svg>

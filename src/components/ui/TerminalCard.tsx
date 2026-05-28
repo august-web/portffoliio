@@ -1,0 +1,54 @@
+'use client'
+
+import React from 'react'
+import { motion } from 'framer-motion'
+
+const lines = [
+  { key: 'user', value: 'Augustine Okechukwu Chima' },
+  { key: 'status', value: 'Available for opportunities' },
+  { key: 'location', value: 'Ghana / Remote' },
+  { key: 'focus', value: 'Full-stack, product UI, web systems' },
+  { key: 'mission', value: 'Make software feel calm and useful' },
+]
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+  },
+}
+
+const item = {
+  hidden: { opacity: 0, x: -10 },
+  show: { opacity: 1, x: 0 },
+}
+
+export default function TerminalCard() {
+  return (
+    <motion.div
+      className="overflow-hidden border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.2 }}
+    >
+      <div className="flex gap-2 px-4 py-4 border-b border-[var(--color-line)]">
+        <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-danger)]" />
+        <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent-2)]" />
+        <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent)]" />
+      </div>
+      <motion.div
+        className="p-5 font-mono text-sm"
+        variants={container}
+        initial="hidden"
+        animate="show"
+      >
+        {lines.map((line) => (
+          <motion.p key={line.key} className="mb-3.5 text-[#cfe3dd] last:mb-0" variants={item}>
+            <span className="text-[var(--color-accent)]">{line.key}</span>: {line.value}
+          </motion.p>
+        ))}
+      </motion.div>
+    </motion.div>
+  )
+}
