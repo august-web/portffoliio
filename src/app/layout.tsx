@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <SkipLink />
-        <div className="w-[min(1180px,calc(100%-32px))] mx-auto max-md:w-[min(100%-24px,720px)] max-sm:w-[min(100%-20px,420px)]">
+        <div className="w-[min(1180px,calc(100%_-_32px))] mx-auto max-md:w-[min(100%_-_24px,720px)] max-sm:w-[min(100%_-_20px,420px)]">
           <Navbar />
           <main id="main-content" tabIndex={-1}>
             {children}

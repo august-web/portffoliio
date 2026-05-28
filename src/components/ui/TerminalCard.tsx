@@ -27,7 +27,7 @@ const item = {
 export default function TerminalCard() {
   return (
     <motion.div
-      className="overflow-hidden border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg"
+      className="min-w-0 overflow-hidden border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
@@ -38,13 +38,17 @@ export default function TerminalCard() {
         <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent)]" />
       </div>
       <motion.div
-        className="p-5 font-mono text-sm"
+        className="p-5 font-mono text-sm max-sm:p-4 max-sm:text-[0.8rem]"
         variants={container}
         initial="hidden"
         animate="show"
       >
         {lines.map((line) => (
-          <motion.p key={line.key} className="mb-3.5 text-[#cfe3dd] last:mb-0" variants={item}>
+          <motion.p
+            key={line.key}
+            className="mb-3.5 text-[#cfe3dd] last:mb-0 break-words"
+            variants={item}
+          >
             <span className="text-[var(--color-accent)]">{line.key}</span>: {line.value}
           </motion.p>
         ))}

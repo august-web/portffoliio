@@ -35,7 +35,7 @@ export default function ContactSection() {
             href={link.href}
             target={link.href.startsWith('mailto') ? undefined : '_blank'}
             rel={link.href.startsWith('mailto') ? undefined : 'noreferrer'}
-            className="border border-[var(--color-line)] bg-white/3 px-[14px] py-3 text-xs font-extrabold uppercase tracking-wider no-underline text-inherit hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors duration-200 inline-flex items-center"
+            className="border border-[var(--color-line)] bg-white/3 px-[14px] py-3 text-xs font-extrabold uppercase tracking-wider no-underline text-inherit hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors duration-200 inline-flex items-center justify-center max-sm:min-h-12 max-sm:w-full"
           >
             {link.label}
           </a>

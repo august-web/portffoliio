@@ -97,6 +97,7 @@ export default function AboutPage() {
         </motion.div>
 
         <motion.div
+          className="min-w-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -110,7 +111,7 @@ export default function AboutPage() {
             <br />
             Chima
           </h1>
-          <p className="text-[var(--color-accent-2)] text-lg font-black uppercase tracking-wider mb-6 max-sm:text-base max-sm:mb-4">
+          <p className="text-[var(--color-accent-2)] text-lg font-black uppercase tracking-wider mb-6 break-words max-sm:text-base max-sm:mb-4">
             Software Developer &bull; Frontend Specialist &bull; UI Architect
           </p>
           <p className="text-[var(--color-muted)] text-base leading-relaxed m-0 max-w-[640px] max-sm:text-sm">
