@@ -74,21 +74,21 @@ export default function AboutPage() {
     <div className="py-12">
       <div className="grid grid-cols-[auto_1fr] gap-12 items-start max-md:grid-cols-1 max-md:gap-8">
         <motion.div
-          className="shrink-0"
+          className="shrink-0 max-md:mx-auto"
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="relative w-[260px] h-[260px] max-md:w-[200px] max-md:h-[200px] max-sm:w-40 max-sm:h-40">
+          <div className="relative w-[260px] h-[260px] max-md:w-[200px] max-md:h-[200px] max-sm:w-[180px] max-sm:h-[180px]">
             <Image
               src="/images/profile.png"
               alt="Augustine Okechukwu Chima"
               fill
-              className="object-cover rounded-3x1"
+              className="object-cover rounded-2xl"
               priority
             />
-            <div className="absolute -bottom-3 -right-3 border border-[var(--color-line)] bg-[var(--color-panel)]/90 backdrop-blur-md px-4 py-2 rounded-xl">
-              <span className="flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-wider text-[var(--color-accent)]">
+            <div className="absolute -bottom-2.5 -right-2.5 border border-[var(--color-line)] bg-[var(--color-panel)]/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl max-sm:px-2.5 max-sm:py-1">
+              <span className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-[var(--color-accent)] max-sm:text-[8px]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] shadow-[0_0_12px_var(--color-accent)]" />
                 Open to Work
               </span>
@@ -104,16 +104,16 @@ export default function AboutPage() {
           <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider mb-4">
             About Me
           </p>
-          <h1 className="text-[4.5rem] leading-[0.9] uppercase m-0 mb-6 max-md:text-[3.2rem] max-sm:text-[2.4rem]">
+          <h1 className="text-[4.5rem] leading-[0.9] uppercase m-0 mb-6 max-md:text-[3.2rem] max-sm:text-[2.4rem] max-[400px]:text-[1.9rem]">
             Augustine
             <br /> Okechukwu
             <br />
             Chima
           </h1>
-          <p className="text-[var(--color-accent-2)] text-lg font-black uppercase tracking-wider mb-6">
+          <p className="text-[var(--color-accent-2)] text-lg font-black uppercase tracking-wider mb-6 max-sm:text-base max-sm:mb-4">
             Software Developer &bull; Frontend Specialist &bull; UI Architect
           </p>
-          <p className="text-[var(--color-muted)] text-base leading-relaxed m-0 max-w-[640px]">
+          <p className="text-[var(--color-muted)] text-base leading-relaxed m-0 max-w-[640px] max-sm:text-sm">
             I design and build responsive web experiences that feel clear, useful, and considered
             from the first screen to the final detail. With a strong foundation in modern frontend
             technologies and a keen eye for interaction design, I craft digital products that are
@@ -148,7 +148,7 @@ export default function AboutPage() {
           <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider mb-2">
             Career
           </p>
-          <h2 className="text-[3.2rem] leading-[0.95] uppercase m-0 mb-10 max-md:text-[2.4rem]">
+          <h2 className="text-[3.2rem] leading-[0.95] uppercase m-0 mb-10 max-md:text-[2.4rem] max-sm:text-[1.9rem] max-sm:mb-8">
             Experience
           </h2>
         </motion.div>
@@ -159,7 +159,7 @@ export default function AboutPage() {
           {timeline.map((item, i) => (
             <motion.div
               key={item.year}
-              className="relative pl-14 pb-12 last:pb-0"
+              className="relative pl-14 pb-12 last:pb-0 max-sm:pl-12 max-sm:pb-10"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-30px' }}
@@ -169,7 +169,7 @@ export default function AboutPage() {
               <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider m-0 mb-2">
                 {item.year}
               </p>
-              <h3 className="text-xl font-bold m-0 mb-0.5">{item.role}</h3>
+              <h3 className="text-xl font-bold m-0 mb-0.5 max-sm:text-lg">{item.role}</h3>
               <p className="text-[var(--color-accent-2)] text-sm font-bold uppercase tracking-wider m-0 mb-2">
                 {item.company}
               </p>
@@ -191,8 +191,8 @@ export default function AboutPage() {
           <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider mb-2">
             Capabilities
           </p>
-          <h2 className="text-[3.2rem] leading-[0.95] uppercase m-0 mb-10 max-md:text-[2.4rem]">
-            Skills & Tools
+          <h2 className="text-[3.2rem] leading-[0.95] uppercase m-0 mb-10 max-md:text-[2.4rem] max-sm:text-[1.9rem] max-sm:mb-8">
+            Skills &amp; Tools
           </h2>
         </motion.div>
 

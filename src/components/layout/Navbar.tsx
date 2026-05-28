@@ -112,7 +112,7 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
             />
             <motion.nav
-              className="fixed top-0 right-0 z-40 h-full w-72 border-l border-[var(--color-line)] bg-[var(--color-panel)]/95 backdrop-blur-xl p-8 pt-24 flex flex-col gap-2"
+              className="fixed top-0 right-0 z-40 h-full w-80 max-sm:w-full border-l border-[var(--color-line)] bg-[var(--color-panel)]/95 backdrop-blur-xl px-6 py-8 pt-24 flex flex-col gap-1"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -126,7 +126,7 @@ export default function Navbar() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className={`px-5 py-4 text-sm font-extrabold uppercase tracking-wider no-underline rounded-xl transition-all duration-200 ${
+                    className={`px-5 py-4 text-base font-extrabold uppercase tracking-wider no-underline rounded-xl transition-all duration-200 ${
                       isActive
                         ? 'text-[var(--color-accent)] border border-[var(--color-line)] bg-[rgba(102,242,194,0.06)]'
                         : 'text-[var(--color-muted)] hover:text-[var(--color-text)] hover:bg-white/3'

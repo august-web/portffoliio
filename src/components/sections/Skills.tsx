@@ -40,9 +40,9 @@ export default function Skills() {
         transition={{ duration: 0.5 }}
       >
         <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider mb-4 m-0 max-sm:text-[0.72rem]">
-          My SKills and Capabilities
+          My Skills &amp; Capabilities
         </p>
-        <h2 className="max-w-[820px] mb-[18px] text-[4.25rem] leading-none m-0 max-md:text-[2.7rem] max-sm:text-[2.1rem] max-sm:leading-[1.04]">
+        <h2 className="max-w-[820px] mb-[18px] text-[4.25rem] leading-none m-0 max-md:text-[2.7rem] max-sm:text-[1.9rem] max-sm:leading-[1.1]">
           Modern web stack, careful interaction design, and practical delivery.
         </h2>
       </motion.div>

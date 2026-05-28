@@ -40,7 +40,7 @@ export default function BlogPage() {
         </h1>
       </motion.div>
 
-      <div className="grid gap-6">
+      <div className="grid gap-5 max-sm:gap-4">
         {posts.map((post, i) => (
           <motion.article
             key={post.title}

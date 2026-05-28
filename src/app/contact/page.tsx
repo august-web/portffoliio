@@ -117,7 +117,7 @@ export default function ContactPage() {
           {error && <p className="text-[var(--color-danger)] text-sm m-0">{error}</p>}
           <button
             type="submit"
-            className="bg-[var(--color-accent)] text-[#04100c] border border-[var(--color-accent)] px-[14px] py-3 text-xs font-extrabold uppercase tracking-wider cursor-pointer hover:brightness-110 transition-all duration-200 w-fit"
+            className="bg-[var(--color-accent)] text-[#04100c] border border-[var(--color-accent)] px-[14px] py-3.5 text-xs font-extrabold uppercase tracking-wider cursor-pointer hover:brightness-110 transition-all duration-200 w-fit max-sm:w-full max-sm:min-h-14"
           >
             Send Your Message
           </button>
