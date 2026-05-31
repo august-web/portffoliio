@@ -11,6 +11,13 @@ const stats = [
   { value: 'Online', label: 'Status' },
 ]
 
+const contactInfo = [
+  { label: 'role', value: 'Software Developer' },
+  { label: 'focus', value: 'Frontend, UI, Full-stack' },
+  { label: 'location', value: 'Ghana / Remote' },
+  { label: 'status', value: 'Open to opportunities' },
+]
+
 const timeline = [
   {
     year: '2024 — Present',
@@ -42,7 +49,7 @@ const timeline = [
   },
 ]
 
-const skills = [
+const skillGroups = [
   {
     category: 'Frontend',
     items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Framer Motion'],
@@ -69,16 +76,29 @@ const skills = [
   },
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0 },
+}
+
 export default function AboutPage() {
   return (
-    <div className="py-12">
-      <div className="grid grid-cols-[auto_1fr] gap-12 items-start max-md:grid-cols-1 max-md:gap-8">
-        <motion.div
-          className="shrink-0 max-md:mx-auto"
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+    <div className="py-12 max-md:py-8">
+      <motion.div
+        className="grid grid-cols-[auto_1fr] gap-12 items-start max-md:grid-cols-1 max-md:gap-8"
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+      >
+        <motion.div className="shrink-0 max-md:mx-auto" variants={itemVariants}>
           <div className="relative w-[260px] h-[260px] max-md:w-[200px] max-md:h-[200px] max-sm:w-[180px] max-sm:h-[180px]">
             <Image
               src="/images/profile.png"
@@ -96,18 +116,14 @@ export default function AboutPage() {
           </div>
         </motion.div>
 
-        <motion.div
-          className="min-w-0"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
+        <motion.div className="min-w-0" variants={itemVariants}>
           <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider mb-4">
             About Me
           </p>
           <h1 className="text-[4.5rem] leading-[0.9] uppercase m-0 mb-6 max-md:text-[3.2rem] max-sm:text-[2.4rem] max-[400px]:text-[1.9rem]">
             Augustine
-            <br /> Okechukwu
+            <br />
+            Okechukwu
             <br />
             Chima
           </h1>
@@ -121,25 +137,34 @@ export default function AboutPage() {
             both beautiful and functional.
           </p>
         </motion.div>
-      </div>
-
-      <motion.div
-        className="grid grid-cols-4 gap-4 py-10 my-12 border-y border-[var(--color-line)] max-md:grid-cols-2"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        {stats.map((stat) => (
-          <div key={stat.label} className="text-center py-4">
-            <p className="text-2xl font-black text-[var(--color-accent)] m-0 mb-1">{stat.value}</p>
-            <p className="text-[11px] font-extrabold uppercase tracking-wider text-[var(--color-muted)] m-0">
-              {stat.label}
-            </p>
-          </div>
-        ))}
       </motion.div>
 
-      <section className="mb-16">
+      <motion.div
+        className="py-12 my-14 border-y border-[var(--color-line)] max-md:py-10 max-md:my-10"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+      >
+        <div className="grid grid-cols-4 gap-6 max-md:grid-cols-2 max-sm:gap-4">
+          {stats.map((stat) => (
+            <motion.div
+              key={stat.label}
+              className="border border-[var(--color-line)] bg-[var(--color-panel)]/80 backdrop-blur-lg p-5 text-center"
+              variants={itemVariants}
+            >
+              <p className="text-2xl font-black text-[var(--color-accent)] m-0 mb-1.5">
+                {stat.value}
+              </p>
+              <p className="text-[10px] font-extrabold uppercase tracking-wider text-[var(--color-muted)] m-0">
+                {stat.label}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      <section className="mb-16 max-md:mb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -198,27 +223,34 @@ export default function AboutPage() {
         </motion.div>
 
         <div className="grid grid-cols-2 gap-6 max-md:grid-cols-1">
-          {skills.map((group, i) => (
+          {skillGroups.map((group, i) => (
             <motion.div
               key={group.category}
-              className="border border-[var(--color-line)] bg-[var(--color-panel)]/80 backdrop-blur-lg p-6 rounded-xl"
+              className="border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-30px' }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
             >
-              <p className="text-[var(--color-accent-2)] text-[10px] font-black uppercase tracking-wider m-0 mb-4">
-                {group.category}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {group.items.map((skill) => (
-                  <span
-                    key={skill}
-                    className="text-[11px] font-bold uppercase tracking-wider px-3.5 py-2 border border-[var(--color-line)] bg-[rgba(102,242,194,0.04)] text-[var(--color-muted)] rounded-lg"
-                  >
-                    {skill}
-                  </span>
-                ))}
+              <div className="flex gap-2 px-4 py-3 border-b border-[var(--color-line)]">
+                <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-danger)]" />
+                <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent-2)]" />
+                <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent)]" />
+              </div>
+              <div className="p-5">
+                <p className="text-[var(--color-accent-2)] text-[10px] font-black uppercase tracking-wider m-0 mb-4">
+                  {group.category}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((skill) => (
+                    <span
+                      key={skill}
+                      className="text-[11px] font-bold uppercase tracking-wider px-3 py-2 border border-[var(--color-line)] bg-[rgba(102,242,194,0.04)] text-[var(--color-muted)]"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}

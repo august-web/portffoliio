@@ -21,7 +21,7 @@ export default function Hero() {
           <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider mb-4 m-0 max-sm:text-[0.65rem]">
             Personal Portfolio / System Online
           </p>
-          <h1 className="text-[8.75rem] leading-[0.88] uppercase max-w-[10ch] mb-1.5 m-0 break-words max-md:text-[5.2rem] max-sm:max-w-full max-sm:text-[2.9rem] max-[400px]:text-[2.55rem] max-[360px]:text-[2.25rem]">
+          <h1 className="text-[8.75rem] leading-[0.95] uppercase mb-1.5 m-0 max-md:text-[5.2rem] max-sm:text-[2.9rem] max-[400px]:text-[2.55rem] max-[360px]:text-[2.25rem]">
             Augustine Okechukwu Chima
           </h1>
           <p className="text-[var(--color-accent-2)] text-[2.1rem] font-black uppercase mb-6 m-0 max-md:text-[1.55rem] max-sm:text-[1.15rem] max-sm:mb-4">

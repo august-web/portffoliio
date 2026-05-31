@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 export default function About() {
   return (
     <motion.section
-      className="max-w-[880px] py-[82px] border-t border-[var(--color-line)] max-md:py-[58px]"
+      className="py-[82px] border-t border-[var(--color-line)] max-md:py-[58px]"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}

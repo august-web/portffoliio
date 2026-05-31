@@ -5,9 +5,31 @@ import { motion } from 'framer-motion'
 import ProjectCard from '../../components/ui/ProjectCard'
 import { projects } from '../../data/projects'
 
+const projectStats = [
+  { label: 'Total Projects', value: '6' },
+  { label: 'Categories', value: '5' },
+  { label: 'Technologies', value: '12+' },
+  { label: 'Status', value: 'Active' },
+]
+
+const categories = ['All', 'Frontend', 'Web App', 'Developer Tool', 'Full Stack', 'UI Library']
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08, delayChildren: 0.15 },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0 },
+}
+
 export default function ProjectsPage() {
   return (
-    <div className="py-12">
+    <div className="py-12 max-md:py-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -20,6 +42,49 @@ export default function ProjectsPage() {
           My Projects
         </h1>
       </motion.div>
+
+      <motion.div
+        className="border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg overflow-hidden mb-10"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+      >
+        <div className="flex gap-2 px-4 py-3.5 border-b border-[var(--color-line)]">
+          <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-danger)]" />
+          <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent-2)]" />
+          <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent)]" />
+        </div>
+        <div className="p-5">
+          <div className="grid grid-cols-4 gap-4 max-md:grid-cols-2 max-sm:grid-cols-2">
+            {projectStats.map((stat) => (
+              <motion.div key={stat.label} className="text-center" variants={itemVariants}>
+                <p className="text-lg font-black text-[var(--color-accent)] m-0 mb-1">
+                  {stat.value}
+                </p>
+                <p className="text-[10px] font-extrabold uppercase tracking-wider text-[var(--color-muted)] m-0">
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+
+      <div className="flex flex-wrap gap-2 mb-8">
+        {categories.map((cat) => (
+          <span
+            key={cat}
+            className={`text-[11px] font-extrabold uppercase tracking-wider px-3.5 py-2 border transition-all duration-200 cursor-pointer ${
+              cat === 'All'
+                ? 'border-[var(--color-accent)] bg-[rgba(102,242,194,0.06)] text-[var(--color-accent)]'
+                : 'border-[var(--color-line)] bg-white/3 text-[var(--color-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]'
+            }`}
+          >
+            {cat}
+          </span>
+        ))}
+      </div>
 
       <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
         {projects.map((project, i) => (

@@ -9,7 +9,7 @@ export default function Projects() {
   return (
     <section className="py-[82px] border-t border-[var(--color-line)] max-md:py-[58px]" id="work">
       <motion.div
-        className="flex items-end justify-between gap-6 mb-7 max-md:block"
+        className="mb-10"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
