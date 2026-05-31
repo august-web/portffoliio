@@ -33,10 +33,22 @@ export default function Navbar() {
       <div className="flex items-center justify-between min-h-16 px-5 py-2.5 border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg rounded-xl">
         <Link
           href="/"
-          className="grid place-items-center w-[42px] h-[42px] bg-[var(--color-accent)] text-[#04100c] text-xs font-extrabold uppercase tracking-wider no-underline shrink-0 rounded-lg"
+          className="grid place-items-center w-[42px] h-[42px] bg-[var(--color-accent)] text-[#04100c] no-underline shrink-0 rounded-lg"
           aria-label="Go to home"
         >
-          A.C
+          <svg
+            viewBox="0 0 24 24"
+            className="w-[22px] h-[22px]"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m7 11 2-2-2-2" />
+            <path d="M11 13h4" />
+            <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+          </svg>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1" aria-label="Primary navigation">
