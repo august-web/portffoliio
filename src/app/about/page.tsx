@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import SkillIcon from '../../components/ui/SkillIcon'
 
 const stats = [
   { value: '4+', label: 'Years Experience' },
@@ -245,8 +246,9 @@ export default function AboutPage() {
                   {group.items.map((skill) => (
                     <span
                       key={skill}
-                      className="text-[11px] font-bold uppercase tracking-wider px-3 py-2 border border-[var(--color-line)] bg-[rgba(102,242,194,0.04)] text-[var(--color-muted)]"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider px-3 py-2 border border-[var(--color-line)] bg-[rgba(102,242,194,0.04)] text-[var(--color-muted)]"
                     >
+                      <SkillIcon name={skill} />
                       {skill}
                     </span>
                   ))}

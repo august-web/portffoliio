@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
+import SkillIcon from '../ui/SkillIcon'
 
 const skills = [
   'React',
@@ -57,9 +58,10 @@ export default function Skills() {
         {skills.map((skill) => (
           <motion.span
             key={skill}
-            className="border border-[var(--color-line)] bg-[rgba(102,242,194,0.06)] px-[14px] py-3 text-[#d5eee7] font-extrabold text-sm"
+            className="inline-flex items-center gap-1.5 border border-[var(--color-line)] bg-[rgba(102,242,194,0.06)] px-[14px] py-3 text-[#d5eee7] font-extrabold text-sm"
             variants={item}
           >
+            <SkillIcon name={skill} />
             {skill}
           </motion.span>
         ))}
