@@ -1,11 +1,21 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import ProjectCard from '../ui/ProjectCard'
+import ProjectModal from '../ui/ProjectModal'
 import { projects } from '../../data/projects'
+import type { Project } from '../../data/projects'
+
+const categories = ['All', 'Full Stack', 'Frontend', 'Developer Tool']
 
 export default function Projects() {
+  const [activeCategory, setActiveCategory] = useState('All')
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+
+  const filtered =
+    activeCategory === 'All' ? projects : projects.filter((p) => p.category === activeCategory)
+
   return (
     <section className="py-[82px] border-t border-[var(--color-line)] max-md:py-[58px]" id="work">
       <motion.div
@@ -23,11 +33,41 @@ export default function Projects() {
         </h2>
       </motion.div>
 
-      <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
-        {projects.map((project, i) => (
-          <ProjectCard key={project.name} {...project} index={i} />
+      <div className="flex flex-wrap gap-2 mb-8">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            type="button"
+            onClick={() => setActiveCategory(cat)}
+            className={`text-[11px] font-extrabold uppercase tracking-wider px-3.5 py-2 border transition-all duration-200 cursor-pointer ${
+              cat === activeCategory
+                ? 'border-[var(--color-accent)] bg-[rgba(102,242,194,0.06)] text-[var(--color-accent)]'
+                : 'border-[var(--color-line)] bg-white/3 text-[var(--color-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]'
+            }`}
+          >
+            {cat}
+          </button>
         ))}
       </div>
+
+      <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
+        {filtered.map((project, i) => (
+          <ProjectCard
+            key={project.name}
+            {...project}
+            index={i}
+            onViewDetails={() => setSelectedProject(project)}
+          />
+        ))}
+      </div>
+
+      {filtered.length === 0 && (
+        <p className="text-[var(--color-muted)] text-sm text-center py-12">
+          No projects found in this category.
+        </p>
+      )}
+
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </section>
   )
 }

@@ -1,18 +1,20 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import ProjectCard from '../../components/ui/ProjectCard'
+import ProjectModal from '../../components/ui/ProjectModal'
 import { projects } from '../../data/projects'
+import type { Project } from '../../data/projects'
 
 const projectStats = [
-  { label: 'Total Projects', value: '6' },
-  { label: 'Categories', value: '5' },
-  { label: 'Technologies', value: '12+' },
+  { label: 'Total Projects', value: '8' },
+  { label: 'Categories', value: '3' },
+  { label: 'Technologies', value: '16+' },
   { label: 'Status', value: 'Active' },
 ]
 
-const categories = ['All', 'Frontend', 'Web App', 'Developer Tool', 'Full Stack', 'UI Library']
+const categories = ['All', 'Full Stack', 'Frontend', 'Developer Tool']
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,6 +30,12 @@ const itemVariants = {
 }
 
 export default function ProjectsPage() {
+  const [activeCategory, setActiveCategory] = useState('All')
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+
+  const filtered =
+    activeCategory === 'All' ? projects : projects.filter((p) => p.category === activeCategory)
+
   return (
     <div className="py-12 max-md:py-8">
       <motion.div
@@ -73,24 +81,39 @@ export default function ProjectsPage() {
 
       <div className="flex flex-wrap gap-2 mb-8">
         {categories.map((cat) => (
-          <span
+          <button
             key={cat}
+            type="button"
+            onClick={() => setActiveCategory(cat)}
             className={`text-[11px] font-extrabold uppercase tracking-wider px-3.5 py-2 border transition-all duration-200 cursor-pointer ${
-              cat === 'All'
+              cat === activeCategory
                 ? 'border-[var(--color-accent)] bg-[rgba(102,242,194,0.06)] text-[var(--color-accent)]'
                 : 'border-[var(--color-line)] bg-white/3 text-[var(--color-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]'
             }`}
           >
             {cat}
-          </span>
+          </button>
         ))}
       </div>
 
-      <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
-        {projects.map((project, i) => (
-          <ProjectCard key={project.name} {...project} index={i} />
+      <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
+        {filtered.map((project, i) => (
+          <ProjectCard
+            key={project.name}
+            {...project}
+            index={i}
+            onViewDetails={() => setSelectedProject(project)}
+          />
         ))}
       </div>
+
+      {filtered.length === 0 && (
+        <p className="text-[var(--color-muted)] text-sm text-center py-12">
+          No projects found in this category.
+        </p>
+      )}
+
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </div>
   )
 }
