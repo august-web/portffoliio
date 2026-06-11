@@ -1,35 +1,45 @@
 import { NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
 
-const DATA_DIR = process.env.NODE_ENV === 'production' ? '/tmp' : path.join(process.cwd(), 'data')
+const BLOB_ID = process.env.JSONBLOB_VIEWS_ID
+const BLOB_URL = `https://jsonblob.com/api/jsonBlob/${BLOB_ID}`
 
-const DATA_FILE = path.join(DATA_DIR, 'views.json')
+interface ViewsData {
+  count: number
+}
 
-function readViews(): number {
+async function readViews(): Promise<ViewsData> {
+  if (!BLOB_ID) return { count: 0 }
   try {
-    if (!fs.existsSync(DATA_FILE)) return 0
-    const raw = fs.readFileSync(DATA_FILE, 'utf-8')
-    return JSON.parse(raw).count
+    const res = await fetch(BLOB_URL)
+    if (!res.ok) return { count: 0 }
+    return await res.json()
   } catch {
-    return 0
+    return { count: 0 }
   }
 }
 
-function writeViews(count: number): void {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true })
+async function writeViews(data: ViewsData): Promise<boolean> {
+  if (!BLOB_ID) return false
+  try {
+    const res = await fetch(BLOB_URL, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+    return res.ok
+  } catch {
+    return false
   }
-  fs.writeFileSync(DATA_FILE, JSON.stringify({ count }))
 }
 
 export async function GET() {
-  const count = readViews()
+  const { count } = await readViews()
   return NextResponse.json({ count })
 }
 
 export async function POST() {
-  const count = readViews() + 1
-  writeViews(count)
-  return NextResponse.json({ count })
+  const { count } = await readViews()
+  const newCount = count + 1
+  await writeViews({ count: newCount })
+  return NextResponse.json({ count: newCount })
 }

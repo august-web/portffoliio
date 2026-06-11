@@ -1,10 +1,7 @@
 import { NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
 
-const DATA_DIR = process.env.NODE_ENV === 'production' ? '/tmp' : path.join(process.cwd(), 'data')
-
-const DATA_FILE = path.join(DATA_DIR, 'testimonials.json')
+const BLOB_ID = process.env.JSONBLOB_TESTIMONIALS_ID
+const BLOB_URL = `https://jsonblob.com/api/jsonBlob/${BLOB_ID}`
 
 interface StoredTestimonial {
   name: string
@@ -13,27 +10,33 @@ interface StoredTestimonial {
   createdAt: string
 }
 
-function readAll(): StoredTestimonial[] {
+async function readAll(): Promise<StoredTestimonial[]> {
+  if (!BLOB_ID) return []
   try {
-    if (!fs.existsSync(DATA_FILE)) return []
-    const raw = fs.readFileSync(DATA_FILE, 'utf-8')
-    return JSON.parse(raw)
+    const res = await fetch(BLOB_URL)
+    if (!res.ok) return []
+    return await res.json()
   } catch {
     return []
   }
 }
 
-function appendOne(t: StoredTestimonial): void {
-  const all = readAll()
-  all.unshift(t)
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true })
+async function writeAll(data: StoredTestimonial[]): Promise<boolean> {
+  if (!BLOB_ID) return false
+  try {
+    const res = await fetch(BLOB_URL, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+    return res.ok
+  } catch {
+    return false
   }
-  fs.writeFileSync(DATA_FILE, JSON.stringify(all, null, 2))
 }
 
 export async function GET() {
-  const testimonials = readAll()
+  const testimonials = await readAll()
   return NextResponse.json(testimonials)
 }
 
@@ -53,7 +56,13 @@ export async function POST(request: Request) {
       createdAt: new Date().toISOString(),
     }
 
-    appendOne(entry)
+    const all = await readAll()
+    all.unshift(entry)
+    const saved = await writeAll(all)
+
+    if (!saved) {
+      return NextResponse.json({ error: 'Failed to save.' }, { status: 500 })
+    }
 
     return NextResponse.json({ success: true, testimonial: entry })
   } catch {
