@@ -15,8 +15,7 @@ export const projects: Project[] = [
     type: 'Platform',
     description:
       'A modern digital platform designed to provide users with a seamless and intuitive online experience, featuring a clean interface, optimized performance, and scalable architecture.',
-    image:
-      'https://iad.microlink.io/1w_Nx7WKz4pfYOSG0M3ZxpTSfwvz0HEdF-8fw8q3_0DlI5fHzHyi7HvJ_eeU5VzHCLnv_fZNJv1tydwX7QwvEQ.png',
+    image: '/images/projects/nyas3.png',
     url: 'https://nyas3.vercel.app/',
     techStack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     featured: true,
@@ -27,8 +26,7 @@ export const projects: Project[] = [
     type: 'Community Platform',
     description:
       'A community platform empowering young Ghanaian students in robotics, IoT, and embedded systems through STEM education. Contributed to building and shaping the digital presence for this innovation hub.',
-    image:
-      'https://iad.microlink.io/3gF9jZXO4VMxAabNf5ORxbAJfA1oPPZkMVL8bVtpUssVRJOtKsfivXZOxnuItmYeaEPH9icz7F4TPIf9ip0Atw.png',
+    image: '/images/projects/innovotech-lab.png',
     url: 'https://www.itlmakershub.com/',
     techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Sanity CMS'],
     featured: true,
@@ -39,8 +37,7 @@ export const projects: Project[] = [
     type: 'Platform',
     description:
       'A social achievement platform where users track goals, share progress, and celebrate wins. Built to turn everyday accomplishments into a shared, motivating feed.',
-    image:
-      'https://iad.microlink.io/1G5mZvbQWLnnpuc8sd7g4Upt-BL1sRgihJpEBNW7H4CjrshIk6NJZVXTUxUeBnhfZbJhxlB4_UN1voAPY9ORGw.png',
+    image: '/images/projects/litany.png',
     url: 'https://litany.world/',
     techStack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     category: 'Full Stack',
@@ -50,8 +47,7 @@ export const projects: Project[] = [
     type: 'Organization',
     description:
       'A professional organizational website built to strengthen brand presence, communicate impact, and provide visitors with a clear pathway to engage with the organization.',
-    image:
-      'https://iad.microlink.io/UvDDUptgFgqgQ0NBdkwLxX32IaMygW3EV5vHTTug1t83meXPfu7y0aqSxdgi-tymiXQ07vQGgUnPkLi6ik-LqQ.png',
+    image: '/images/projects/chambey.png',
     url: 'https://chambeyorg.vercel.app/',
     techStack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     category: 'Full Stack',
@@ -61,8 +57,7 @@ export const projects: Project[] = [
     type: 'Portfolio',
     description:
       'A responsive portfolio website showcasing my skills, projects, achievements, and professional journey as a Full-Stack Developer and technology enthusiast.',
-    image:
-      'https://iad.microlink.io/ZONd7WsmzPw_dnfEKzZLWDltfXTffZTaktGtX2b344gPWayoxQhSLtCrcvDNBbokmvhvqESzIyWevDqJg5yDMA.png',
+    image: '/images/projects/personal-portfolio.png',
     url: 'https://ac-portfolio-khaki.vercel.app/',
     techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     category: 'Frontend',
@@ -72,8 +67,7 @@ export const projects: Project[] = [
     type: 'Landing Page',
     description:
       'A modern landing page developed for a technology-focused initiative, designed to attract users, communicate value, and drive engagement through strong visual storytelling.',
-    image:
-      'https://iad.microlink.io/6Um8LQf74i4_KV6sS1CBuL_GPIfDbDcH_kvRcPrk5B0ZOEmxJPqjX8Z0n7A2btIesyrbiNejX90PV0o1Uud6nQ.png',
+    image: '/images/projects/techcrew.png',
     url: 'https://techcrew-landing.vercel.app/',
     techStack: ['React', 'JavaScript', 'CSS'],
     category: 'Frontend',
@@ -83,8 +77,7 @@ export const projects: Project[] = [
     type: 'Platform',
     description:
       'A digital networking and community platform created to connect individuals, foster collaboration, and simplify communication through an intuitive user experience.',
-    image:
-      'https://iad.microlink.io/PX5uDFtFG9xhyxljTtOaFUzVBDrtpleD7ljHJ5rBFlU0eSRy5tr2gBWD9m8ttp-5mWIYCSmhcJRZNtLju31C5A.png',
+    image: '/images/projects/pragia-connect.png',
     url: 'https://pragia-connect.vercel.app/',
     techStack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     category: 'Full Stack',
@@ -94,8 +87,7 @@ export const projects: Project[] = [
     type: 'Developer Tool',
     description:
       'A utility tool designed to capture, organize, and manage screen content with an intuitive grid-based interface, streamlining visual workflows for developers and designers.',
-    image:
-      'https://iad.microlink.io/QEs9ewsxkPhEc-tw7smh98laCYtu9oAI3mVDrjq8H4U91bPkRu0MzzMClpkaw1v5eBPqEEKMY4KmaWTXClFnpA.png',
+    image: '/images/projects/grid-capture.png',
     url: 'https://grid-capture.onrender.com/',
     techStack: ['React', 'JavaScript', 'CSS', 'Node.js'],
     category: 'Developer Tool',
@@ -105,8 +97,7 @@ export const projects: Project[] = [
     type: 'Platform',
     description:
       'A comprehensive platform built for a technology-focused community, offering tools and resources to connect members, share knowledge, and drive collaborative innovation.',
-    image:
-      'https://iad.microlink.io/yvJjxhd0fGv5yrEGwiHEc8NuSjXBVWxCoGNzrFFGKpeV0O75_g_VDivYOHO2HP5XpiwWqWSOlnmTpQIjEfwOFg.png',
+    image: '/images/projects/techcrew-platform.png',
     url: 'https://techcrew-five.vercel.app/',
     techStack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     category: 'Full Stack',
@@ -116,8 +107,7 @@ export const projects: Project[] = [
     type: 'Education',
     description:
       'An interactive typing practice tool built for students to improve their typing speed and accuracy through structured exercises, real-time feedback, and performance tracking.',
-    image:
-      'https://iad.microlink.io/yfeIka8Cyscy6CEZBk1UHqnxCROS3AlB_yzRFjLvkE-OsTuh2_fy1Cua1hzrcJOmXs_7rmvKt_CivWApYzlfzQ.png',
+    image: '/images/projects/typing-assessment.png',
     url: 'https://high-priest-academy.vercel.app/',
     techStack: ['JavaScript', 'HTML', 'CSS'],
     category: 'Frontend',

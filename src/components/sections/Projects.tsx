@@ -58,6 +58,7 @@ export default function Projects() {
             key={project.name}
             {...project}
             index={i}
+            priority={i < 2}
             onViewDetails={() => setSelectedProject(project)}
           />
         ))}
