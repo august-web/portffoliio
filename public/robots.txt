@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://augustinechima.com/sitemap.xml
+Sitemap: https://augustineportfolio.dev/sitemap.xml
