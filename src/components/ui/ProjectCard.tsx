@@ -21,30 +21,83 @@ export default function ProjectCard({
   index,
   onViewDetails,
 }: ProjectCardProps) {
+  const cardRef = React.useRef<HTMLDivElement>(null)
+  const [tilt, setTilt] = React.useState({ x: 0, y: 0 })
+  const [imgError, setImgError] = React.useState(false)
+
+  function onMouseMove(e: React.MouseEvent) {
+    const rect = cardRef.current?.getBoundingClientRect()
+    if (!rect) return
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    setTilt({ x: y * -6, y: x * 6 })
+  }
+
+  function onMouseLeave() {
+    setTilt({ x: 0, y: 0 })
+  }
+
   return (
     <motion.article
+      ref={cardRef}
       className="group relative flex flex-col border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg overflow-hidden transition-all duration-300 hover:border-[var(--color-accent)]/40 hover:shadow-[0_32px_100px_rgba(0,0,0,0.35)] hover:-translate-y-1"
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      style={{ perspective: 800, transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.12 }}
     >
       {featured && (
-        <div className="absolute top-3 right-3 z-10 border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/10 backdrop-blur-md px-2.5 py-1 rounded-full">
+        <motion.div
+          className="absolute top-3 right-3 z-10 border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/10 backdrop-blur-md px-2.5 py-1 rounded-full"
+          animate={{
+            boxShadow: [
+              '0 0 0px rgba(102,242,194,0)',
+              '0 0 16px rgba(102,242,194,0.3)',
+              '0 0 0px rgba(102,242,194,0)',
+            ],
+          }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+        >
           <span className="text-[9px] font-extrabold uppercase tracking-wider text-[var(--color-accent)]">
             Featured
           </span>
-        </div>
+        </motion.div>
       )}
 
       <div className="relative w-full h-48 overflow-hidden max-sm:h-40">
-        <Image
-          src={image}
-          alt={`${name} project screenshot`}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
+        <div className="absolute inset-0 flex items-center justify-center bg-[var(--color-panel-strong)]">
+          {!imgError ? (
+            <Image
+              src={image}
+              alt={`${name} project screenshot`}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <div className="flex flex-col items-center gap-2 text-[var(--color-muted)]">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+              </svg>
+              <span className="text-[10px] font-extrabold uppercase tracking-wider">{name}</span>
+            </div>
+          )}
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 

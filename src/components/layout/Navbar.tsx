@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import ThemeToggle from '../ui/ThemeToggle'
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -63,6 +64,7 @@ export default function Navbar() {
                     ? 'text-[var(--color-accent)]'
                     : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
                 }`}
+                aria-current={isActive ? 'page' : undefined}
               >
                 {isActive && (
                   <motion.span
@@ -77,11 +79,15 @@ export default function Navbar() {
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+
           <span className="hidden md:inline-flex items-center gap-2 border border-[var(--color-line)] bg-white/3 px-3.5 py-2 text-[10px] font-extrabold uppercase tracking-wider text-[var(--color-accent)] rounded-lg">
-            <span
-              className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] shadow-[0_0_12px_var(--color-accent)]"
+            <motion.span
+              className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]"
               aria-hidden="true"
+              animate={{ opacity: [1, 0.4, 1], scale: [1, 0.8, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
             />
             Online
           </span>

@@ -1,4 +1,7 @@
 import { NextResponse } from 'next/server'
+import { Resend } from 'resend'
+
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
 export async function POST(request: Request) {
   try {
@@ -13,8 +16,18 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid email address.' }, { status: 400 })
     }
 
-    // TODO: Integrate with an email service (Resend, SendGrid, etc.)
-    console.log('Contact form submission:', { name, email, message })
+    if (!resend) {
+      console.log('Contact form submission (no Resend key configured):', { name, email, message })
+      return NextResponse.json({ success: true })
+    }
+
+    await resend.emails.send({
+      from: 'Portfolio Contact <onboarding@resend.dev>',
+      to: 'augustinechima17@gmail.com',
+      subject: `New message from ${name}`,
+      replyTo: email,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    })
 
     return NextResponse.json({ success: true })
   } catch {

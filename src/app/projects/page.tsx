@@ -81,7 +81,7 @@ export default function ProjectsPage() {
 
       <div className="flex flex-wrap gap-2 mb-8">
         {categories.map((cat) => (
-          <button
+          <motion.button
             key={cat}
             type="button"
             onClick={() => setActiveCategory(cat)}
@@ -90,9 +90,11 @@ export default function ProjectsPage() {
                 ? 'border-[var(--color-accent)] bg-[rgba(102,242,194,0.06)] text-[var(--color-accent)]'
                 : 'border-[var(--color-line)] bg-white/3 text-[var(--color-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]'
             }`}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
           >
             {cat}
-          </button>
+          </motion.button>
         ))}
       </div>
 

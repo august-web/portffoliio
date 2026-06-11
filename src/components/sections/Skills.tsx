@@ -10,9 +10,15 @@ const skills = [
   'TypeScript',
   'JavaScript',
   'CSS',
+  'Tailwind CSS',
+  'Node.js',
+  'PostgreSQL',
+  'REST APIs',
   'Responsive UI',
-  'APIs',
+  'Accessibility',
   'Git',
+  'Figma',
+  'System Design',
 ]
 
 const container = {

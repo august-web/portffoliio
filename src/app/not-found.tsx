@@ -1,5 +1,8 @@
+'use client'
+
 import React from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 export default function NotFound() {
   return (
@@ -13,12 +16,14 @@ export default function NotFound() {
       <p className="text-[var(--color-muted)] text-lg mb-8 max-w-[480px] max-sm:text-base max-sm:px-2">
         The page you&apos;re looking for doesn&apos;t exist or has been moved.
       </p>
-      <Link
-        href="/"
-        className="border border-[var(--color-line)] bg-white/3 px-[14px] py-3 text-xs font-extrabold uppercase tracking-wider no-underline text-inherit hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors duration-200 max-sm:w-full max-sm:min-h-14 max-sm:flex max-sm:items-center max-sm:justify-center"
-      >
-        Go Home
-      </Link>
+      <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+        <Link
+          href="/"
+          className="border border-[var(--color-line)] bg-white/3 px-[14px] py-3 text-xs font-extrabold uppercase tracking-wider no-underline text-inherit hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors duration-200 max-sm:w-full max-sm:min-h-14 max-sm:flex max-sm:items-center max-sm:justify-center inline-flex"
+        >
+          Go Home
+        </Link>
+      </motion.div>
     </div>
   )
 }
