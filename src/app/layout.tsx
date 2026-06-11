@@ -43,7 +43,10 @@ export const metadata: Metadata = {
     canonical: baseUrl,
   },
   icons: {
-    icon: '/favicon.svg',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.png', type: 'image/png' },
+    ],
   },
 }
 
