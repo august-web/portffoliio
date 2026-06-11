@@ -1,7 +1,41 @@
 import { NextResponse } from 'next/server'
-import { Resend } from 'resend'
+import fs from 'fs'
+import path from 'path'
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
+const DATA_DIR = process.env.NODE_ENV === 'production' ? '/tmp' : path.join(process.cwd(), 'data')
+
+const DATA_FILE = path.join(DATA_DIR, 'testimonials.json')
+
+interface StoredTestimonial {
+  name: string
+  message: string
+  vibe: string
+  createdAt: string
+}
+
+function readAll(): StoredTestimonial[] {
+  try {
+    if (!fs.existsSync(DATA_FILE)) return []
+    const raw = fs.readFileSync(DATA_FILE, 'utf-8')
+    return JSON.parse(raw)
+  } catch {
+    return []
+  }
+}
+
+function appendOne(t: StoredTestimonial): void {
+  const all = readAll()
+  all.unshift(t)
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true })
+  }
+  fs.writeFileSync(DATA_FILE, JSON.stringify(all, null, 2))
+}
+
+export async function GET() {
+  const testimonials = readAll()
+  return NextResponse.json(testimonials)
+}
 
 export async function POST(request: Request) {
   try {
@@ -12,19 +46,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'name and message are required' }, { status: 400 })
     }
 
-    if (!resend) {
-      console.log('Testimonial submission (no Resend key):', { name, message, vibe })
-      return NextResponse.json({ success: true })
+    const entry: StoredTestimonial = {
+      name: name.trim(),
+      message: message.trim(),
+      vibe: vibe || '',
+      createdAt: new Date().toISOString(),
     }
 
-    await resend.emails.send({
-      from: 'Portfolio Vibe Check <onboarding@resend.dev>',
-      to: 'augustinechima17@gmail.com',
-      subject: `✨ New testimonial vibe from ${name}`,
-      text: `Name: ${name}\nVibe: ${vibe || 'N/A'}\n\nMessage:\n${message}`,
-    })
+    appendOne(entry)
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true, testimonial: entry })
   } catch {
     return NextResponse.json({ error: 'Invalid request.' }, { status: 400 })
   }
