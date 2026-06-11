@@ -35,6 +35,17 @@ export const projects: Project[] = [
     category: 'Full Stack',
   },
   {
+    name: 'Litany',
+    type: 'Platform',
+    description:
+      'A social achievement platform where users track goals, share progress, and celebrate wins. Built to turn everyday accomplishments into a shared, motivating feed.',
+    image:
+      'https://iad.microlink.io/1G5mZvbQWLnnpuc8sd7g4Upt-BL1sRgihJpEBNW7H4CjrshIk6NJZVXTUxUeBnhfZbJhxlB4_UN1voAPY9ORGw.png',
+    url: 'https://litany.world/',
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    category: 'Full Stack',
+  },
+  {
     name: 'Chambey',
     type: 'Organization',
     description:
