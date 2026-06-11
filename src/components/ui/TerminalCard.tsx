@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useMousePosition } from './useMousePosition'
 
@@ -29,6 +29,14 @@ export default function TerminalCard() {
   const { x, y } = useMousePosition()
   const rotateX = (y - 0.5) * -4
   const rotateY = (x - 0.5) * 4
+  const [viewCount, setViewCount] = useState<number | null>(null)
+
+  useEffect(() => {
+    fetch('/api/views')
+      .then((r) => r.json())
+      .then((d) => setViewCount(d.count))
+      .catch(() => {})
+  }, [])
 
   return (
     <motion.div
@@ -63,6 +71,12 @@ export default function TerminalCard() {
               <span className="text-[var(--color-accent)]">{line.key}</span>: {line.value}
             </motion.p>
           ))}
+          {viewCount !== null && (
+            <motion.p className="mb-3.5 text-[#cfe3dd] last:mb-0 break-words" variants={item}>
+              <span className="text-[var(--color-accent)]">visitors</span>:{' '}
+              {viewCount.toLocaleString()}
+            </motion.p>
+          )}
         </motion.div>
       </motion.div>
     </motion.div>
