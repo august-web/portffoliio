@@ -23,6 +23,18 @@ export const projects: Project[] = [
     category: 'Full Stack',
   },
   {
+    name: 'InnovoTech Lab',
+    type: 'Community Platform',
+    description:
+      'A community platform empowering young Ghanaian students in robotics, IoT, and embedded systems through STEM education. Contributed to building and shaping the digital presence for this innovation hub.',
+    image:
+      'https://iad.microlink.io/3gF9jZXO4VMxAabNf5ORxbAJfA1oPPZkMVL8bVtpUssVRJOtKsfivXZOxnuItmYeaEPH9icz7F4TPIf9ip0Atw.png',
+    url: 'https://www.itlmakershub.com/',
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Sanity CMS'],
+    featured: true,
+    category: 'Full Stack',
+  },
+  {
     name: 'Chambey',
     type: 'Organization',
     description:
