@@ -45,32 +45,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-[data-theme='light'] {
-  --color-bg: #f4f8f7;
-  --color-panel: #eef4f2;
-  --color-panel-strong: #dce8e3;
-  --color-line: rgba(6, 8, 9, 0.1);
-  --color-muted: #5a7370;
-  --color-accent: #0f9b6e;
-  --color-accent-2: #c48a1a;
-  --color-text: #0c1815;
-  --color-danger: #d6406a;
-}
-
-[data-theme='light'] body {
-  background:
-    linear-gradient(rgba(15, 155, 110, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 155, 110, 0.06) 1px, transparent 1px),
-    radial-gradient(circle at 80% 12%, rgba(196, 138, 26, 0.08), transparent 28rem),
-    radial-gradient(circle at 20% 20%, rgba(15, 155, 110, 0.08), transparent 24rem), var(--color-bg);
-  background-size:
-    42px 42px,
-    42px 42px,
-    auto,
-    auto,
-    auto;
-}
-
 @media (max-width: 520px) {
   body {
     background-size:
@@ -80,23 +54,4 @@ body {
       auto,
       auto;
   }
-
-  [data-theme='light'] body {
-    background-size:
-      30px 30px,
-      30px 30px,
-      auto,
-      auto,
-      auto;
-  }
-}
-
-html {
-  transition: color-scheme 0.3s;
-}
-
-body {
-  transition:
-    background-color 0.3s,
-    color 0.3s;
 }
