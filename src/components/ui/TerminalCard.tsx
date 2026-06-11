@@ -71,12 +71,13 @@ export default function TerminalCard() {
               <span className="text-[var(--color-accent)]">{line.key}</span>: {line.value}
             </motion.p>
           ))}
-          {viewCount !== null && (
-            <motion.p className="mb-3.5 text-[#cfe3dd] last:mb-0 break-words" variants={item}>
-              <span className="text-[var(--color-accent)]">visitors</span>:{' '}
-              {viewCount.toLocaleString()}
-            </motion.p>
-          )}
+          <motion.p
+            className={`mb-3.5 text-[#cfe3dd] last:mb-0 break-words ${viewCount === null ? 'opacity-0' : ''}`}
+            variants={item}
+          >
+            <span className="text-[var(--color-accent)]">visitors</span>:{' '}
+            {viewCount !== null ? viewCount.toLocaleString() : '---'}
+          </motion.p>
         </motion.div>
       </motion.div>
     </motion.div>

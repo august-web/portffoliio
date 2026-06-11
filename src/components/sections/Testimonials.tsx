@@ -188,42 +188,44 @@ export default function Testimonials() {
         </form>
       </motion.div>
 
-      {testimonials.length > 0 && (
-        <motion.div
-          className="grid grid-cols-2 gap-4 max-md:grid-cols-1"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-50px' }}
-        >
-          {testimonials.map((item, i) => (
-            <motion.div
-              key={`${item.createdAt}-${i}`}
-              className="flex flex-col border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg p-6 transition-all duration-300 hover:border-[var(--color-accent)]/40"
-              variants={cardVariants}
-            >
-              {item.vibe && <p className="text-2xl m-0 mb-3">{item.vibe}</p>}
-              <blockquote className="text-[var(--color-muted)] text-sm leading-relaxed m-0 mb-4 flex-1">
-                &ldquo;{item.message}&rdquo;
-              </blockquote>
-              <div className="flex items-center gap-3 pt-4 border-t border-[var(--color-line)]">
-                <div className="w-9 h-9 rounded-full bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/30 flex items-center justify-center shrink-0">
-                  <span className="text-[11px] font-extrabold text-[var(--color-accent)]">
-                    {item.name
-                      .split(' ')
-                      .map((n) => n[0])
-                      .join('')
-                      .slice(0, 2)}
-                  </span>
+      <div className={testimonials.length === 0 ? 'min-h-[200px]' : ''}>
+        {testimonials.length > 0 && (
+          <motion.div
+            className="grid grid-cols-2 gap-4 max-md:grid-cols-1"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-50px' }}
+          >
+            {testimonials.map((item, i) => (
+              <motion.div
+                key={`${item.createdAt}-${i}`}
+                className="flex flex-col border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg p-6 transition-all duration-300 hover:border-[var(--color-accent)]/40"
+                variants={cardVariants}
+              >
+                {item.vibe && <p className="text-2xl m-0 mb-3">{item.vibe}</p>}
+                <blockquote className="text-[var(--color-muted)] text-sm leading-relaxed m-0 mb-4 flex-1">
+                  &ldquo;{item.message}&rdquo;
+                </blockquote>
+                <div className="flex items-center gap-3 pt-4 border-t border-[var(--color-line)]">
+                  <div className="w-9 h-9 rounded-full bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/30 flex items-center justify-center shrink-0">
+                    <span className="text-[11px] font-extrabold text-[var(--color-accent)]">
+                      {item.name
+                        .split(' ')
+                        .map((n) => n[0])
+                        .join('')
+                        .slice(0, 2)}
+                    </span>
+                  </div>
+                  <p className="text-[13px] font-bold text-[var(--color-text)] m-0 leading-tight truncate">
+                    {item.name}
+                  </p>
                 </div>
-                <p className="text-[13px] font-bold text-[var(--color-text)] m-0 leading-tight truncate">
-                  {item.name}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      )}
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </div>
     </section>
   )
 }
