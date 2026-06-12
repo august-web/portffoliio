@@ -17,11 +17,11 @@ export const metadata: Metadata = {
     template: '%s | Augustine Okechukwu Chima',
   },
   description:
-    'Personal software development portfolio for Augustine Okechukwu Chima — frontend, full-stack product UI, and web systems.',
+    'Web developer who builds results-driven digital experiences — driving revenue growth, search visibility (AEO/GEO/SEO), and measurable business impact.',
   openGraph: {
     title: 'Augustine Okechukwu Chima | Software Developer',
     description:
-      'Personal software developer portfolio for Augustine Okechukwu Chima — frontend, full-stack product UI, and web systems.',
+      'Web developer who builds results-driven digital experiences — driving revenue growth, search visibility (AEO/GEO/SEO), and measurable business impact.',
     type: 'website',
     locale: 'en_US',
     siteName: 'Augustine Okechukwu Chima',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Augustine Okechukwu Chima | Software Developer',
     description:
-      'Personal software developer portfolio for Augustine Okechukwu Chima — frontend, full-stack product UI, and web systems.',
+      'Web developer who builds results-driven digital experiences — driving revenue growth, search visibility (AEO/GEO/SEO), and measurable business impact.',
     images: ['/opengraph-image.png'],
   },
   robots: {
@@ -79,7 +79,7 @@ const jsonLd = {
       url: baseUrl,
       name: 'Augustine Okechukwu Chima | Software Developer',
       description:
-        'Personal software development portfolio for Augustine Okechukwu Chima — frontend, full-stack product UI, and web systems.',
+        'Web developer who builds results-driven digital experiences — driving revenue growth, AEO/GEO/SEO, and measurable business impact.',
       publisher: { '@id': `${baseUrl}/#person` },
     },
   ],

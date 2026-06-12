@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import { useMousePosition } from './useMousePosition'
 
@@ -9,7 +9,8 @@ const lines = [
   { key: 'status', value: 'Available for opportunities' },
   { key: 'location', value: 'Ghana / Remote' },
   { key: 'focus', value: 'Full-stack, product UI, web systems' },
-  { key: 'mission', value: 'Make software feel calm and useful' },
+  { key: 'experience', value: '4+ years building web apps' },
+  { key: 'stack', value: 'React, Next.js, TypeScript' },
 ]
 
 const container = {
@@ -29,14 +30,6 @@ export default function TerminalCard() {
   const { x, y } = useMousePosition()
   const rotateX = (y - 0.5) * -4
   const rotateY = (x - 0.5) * 4
-  const [viewCount, setViewCount] = useState<number | null>(null)
-
-  useEffect(() => {
-    fetch('/api/views')
-      .then((r) => r.json())
-      .then((d) => setViewCount(d.count))
-      .catch(() => {})
-  }, [])
 
   return (
     <motion.div
@@ -65,19 +58,12 @@ export default function TerminalCard() {
           {lines.map((line) => (
             <motion.p
               key={line.key}
-              className="mb-3.5 text-[#cfe3dd] last:mb-0 break-words"
+              className="mb-3.5 text-[var(--color-text)] last:mb-0 break-words"
               variants={item}
             >
               <span className="text-[var(--color-accent)]">{line.key}</span>: {line.value}
             </motion.p>
           ))}
-          <motion.p
-            className={`mb-3.5 text-[#cfe3dd] last:mb-0 break-words ${viewCount === null ? 'opacity-0' : ''}`}
-            variants={item}
-          >
-            <span className="text-[var(--color-accent)]">visitors</span>:{' '}
-            {viewCount !== null ? viewCount.toLocaleString() : '---'}
-          </motion.p>
         </motion.div>
       </motion.div>
     </motion.div>

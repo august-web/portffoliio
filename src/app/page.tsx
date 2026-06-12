@@ -9,14 +9,14 @@ import ContactSection from '../components/sections/ContactSection'
 export const metadata: Metadata = {
   title: 'Augustine Okechukwu Chima | Software Developer',
   description:
-    'Personal portfolio of Augustine Okechukwu Chima — frontend, full-stack developer and UI architect building responsive web experiences.',
+    'Frontend engineer & web developer who builds results-driven digital experiences — driving revenue growth, search visibility (AEO/GEO/SEO), and measurable business impact.',
   alternates: {
     canonical: 'https://augustineportfolio.dev',
   },
   openGraph: {
     title: 'Augustine Okechukwu Chima | Software Developer',
     description:
-      'Personal portfolio of Augustine Okechukwu Chima — frontend, full-stack developer and UI architect.',
+      'Frontend engineer & web developer who builds results-driven digital experiences — driving revenue, SEO, and business impact.',
   },
 }
 

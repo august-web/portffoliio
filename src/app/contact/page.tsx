@@ -104,7 +104,10 @@ export default function ContactPage() {
             </div>
             <div className="p-5 font-mono text-sm">
               {contactInfo.map((line) => (
-                <p key={line.label} className="mb-4 text-[#cfe3dd] last:mb-0 leading-relaxed">
+                <p
+                  key={line.label}
+                  className="mb-4 text-[var(--color-text)] last:mb-0 leading-relaxed"
+                >
                   <span className="text-[var(--color-accent)]">$ {line.label}</span>
                   <br />
                   <span className="pl-5">{line.value}</span>

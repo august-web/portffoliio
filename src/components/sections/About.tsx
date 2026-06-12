@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 export default function About() {
@@ -15,9 +16,24 @@ export default function About() {
       <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider mb-4 m-0 max-sm:text-[0.72rem]">
         About
       </p>
-      <h2 className="max-w-[820px] mb-[18px] text-[4.25rem] leading-none m-0 max-md:text-[2.7rem] max-sm:text-[2.1rem] max-sm:leading-[1.04]">
-        Engineering interfaces that feel sharp, fast, and intentional.
-      </h2>
+      <div className="flex items-start gap-8 mb-6 max-md:flex-col max-md:items-center max-md:text-center">
+        <div className="shrink-0">
+          <div className="relative w-[130px] h-[130px] max-sm:w-[110px] max-sm:h-[110px]">
+            <Image
+              src="/images/profile.png"
+              alt="Augustine Okechukwu Chima"
+              fill
+              className="object-cover rounded-xl border-2 border-[var(--color-line)]"
+              priority
+            />
+          </div>
+        </div>
+        <div className="min-w-0">
+          <h2 className="mb-[18px] text-[4.25rem] leading-none m-0 max-md:text-[2.7rem] max-sm:text-[2.1rem] max-sm:leading-[1.04]">
+            Engineering interfaces that feel sharp, fast, and intentional.
+          </h2>
+        </div>
+      </div>
       <p className="max-w-[720px] text-[var(--color-muted)] text-[1.08rem] leading-[1.8] m-0 mb-5">
         I care about the details people notice and the structure they do not have to think about:
         readable layouts, responsive behavior, accessible interactions, and code that can keep

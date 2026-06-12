@@ -30,7 +30,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-4 z-50">
-      <div className="flex items-center justify-between min-h-16 px-5 py-2.5 border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg rounded-xl">
+      <div className="flex items-center justify-between min-h-16 px-5 py-2.5 border border-[var(--color-line)] bg-[var(--color-panel)]/90 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg rounded-xl">
         <Link
           href="/"
           className="grid place-items-center w-[42px] h-[42px] bg-[var(--color-accent)] text-[#04100c] no-underline shrink-0 rounded-lg"
@@ -58,10 +58,15 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`relative px-4 py-2.5 text-xs font-extrabold uppercase tracking-wider no-underline transition-colors duration-200 rounded-lg ${
+                onClick={() => {
+                  if (link.href === '/' && pathname === '/') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                  }
+                }}
+                className={`relative px-4 py-2.5 text-xs font-extrabold uppercase tracking-wider no-underline transition-all duration-200 rounded-lg ${
                   isActive
                     ? 'text-[var(--color-accent)]'
-                    : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
+                    : 'text-[var(--color-text)]/70 hover:text-[var(--color-text)] hover:bg-white/3'
                 }`}
                 aria-current={isActive ? 'page' : undefined}
               >
@@ -141,6 +146,12 @@ export default function Navbar() {
                   <Link
                     key={link.label}
                     href={link.href}
+                    onClick={() => {
+                      setMenuOpen(false)
+                      if (link.href === '/' && pathname === '/') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                      }
+                    }}
                     className={`px-5 py-4 text-base font-extrabold uppercase tracking-wider no-underline rounded-xl transition-all duration-200 ${
                       isActive
                         ? 'text-[var(--color-accent)] border border-[var(--color-line)] bg-[rgba(102,242,194,0.06)]'

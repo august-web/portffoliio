@@ -19,17 +19,17 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
         >
           <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider mb-4 m-0 max-sm:text-[0.65rem]">
-            Personal Portfolio / System Online
+            Results-Driven Web Development
           </p>
-          <h1 className="text-[clamp(2.5rem,7vw,4.75rem)] leading-[0.95] uppercase mb-1.5 m-0 text-[#F5F0E8] max-sm:text-[clamp(2rem,10vw,2.9rem)] max-[400px]:text-[clamp(1.65rem,10vw,2.55rem)]">
+          <h1 className="text-[clamp(2.5rem,7vw,4.75rem)] leading-[0.95] uppercase mb-1.5 m-0 text-[var(--color-text)] max-sm:text-[clamp(2rem,10vw,2.9rem)] max-[400px]:text-[clamp(1.65rem,10vw,2.55rem)]">
             Augustine Okechukwu Chima
           </h1>
-          <p className="text-[#F5C518] text-[clamp(1.15rem,2.2vw,2.1rem)] font-black uppercase mb-6 m-0 max-sm:text-[clamp(0.95rem,4vw,1.15rem)] max-sm:mb-4">
+          <p className="text-[var(--color-accent-2)] text-[clamp(1.15rem,2.2vw,2.1rem)] font-black uppercase mb-6 m-0 max-sm:text-[clamp(0.95rem,4vw,1.15rem)] max-sm:mb-4">
             Software Developer
           </p>
-          <p className="max-w-[680px] mb-[30px] text-[#b7c7c3] text-[1.2rem] leading-[1.7] m-0 max-md:text-[1.06rem] max-sm:text-[0.95rem] max-sm:leading-[1.6] max-sm:mb-6">
-            I design and build responsive web experiences that feel clear, useful, and considered
-            from the first screen to the final detail.
+          <p className="max-w-[680px] mb-[30px] text-[var(--color-muted)] text-[1.2rem] leading-[1.7] m-0 max-md:text-[1.06rem] max-sm:text-[0.95rem] max-sm:leading-[1.6] max-sm:mb-6">
+            I build web experiences that drive results — from revenue growth and search dominance to
+            clear, lasting design that users trust.
           </p>
           <div
             className="flex flex-wrap gap-3 max-sm:flex-col max-sm:w-full"
