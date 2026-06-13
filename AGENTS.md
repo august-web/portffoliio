@@ -57,13 +57,14 @@ src/styles/globals.css
 ### Git
 
 - Commit `fdb6dc5`: "Fix mobile menu, add light mode, improve nav contrast, personalize homepage, update TerminalCard, rewrite messaging"
-- Pushed to `origin/master`
+- Commit `c7a8c9f`: "Fix mobile hamburger: add close X in nav panel, elevate hamburger to fixed z-60 when menu open"
+- Commit `ca081f7`: "Fix testimonials persistence: replace JSONBlob-only with local file + remote fallback"
+- All pushed to `origin/master`
 
 ### Future ideas (not yet done)
 
 - Add a `color-scheme` meta tag to `<html>` for proper browser form styling in light mode
 - Consider adding a theme toggle (though `prefers-color-scheme` is simpler)
-- Populate testimonials section with real client reviews
 - Desktop nav could use a sticky header that's even more visually distinct (e.g., bottom border highlight)
 
 ## Commands
