@@ -96,7 +96,11 @@ export default function Navbar() {
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden relative z-50 w-10 h-10 flex items-center justify-center border border-[var(--color-line)] bg-white/3 rounded-lg cursor-pointer hover:border-[var(--color-accent)] transition-colors duration-200"
+            className={`md:hidden relative w-10 h-10 flex items-center justify-center border border-[var(--color-line)] rounded-lg cursor-pointer hover:border-[var(--color-accent)] transition-colors duration-200 ${
+              menuOpen
+                ? 'fixed top-7 right-7 z-[60] bg-[var(--color-panel)] shadow-[0_8px_32px_rgba(0,0,0,0.4)]'
+                : 'z-50 bg-white/3'
+            }`}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
           >
@@ -139,6 +143,24 @@ export default function Navbar() {
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               aria-label="Mobile navigation"
             >
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="absolute top-5 right-5 w-10 h-10 flex items-center justify-center border border-[var(--color-line)] bg-white/3 rounded-lg cursor-pointer hover:border-[var(--color-accent)] transition-colors duration-200"
+                aria-label="Close menu"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              </button>
               {navLinks.map((link) => {
                 const isActive =
                   link.href === '/' ? pathname === '/' : pathname.startsWith(link.href)
