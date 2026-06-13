@@ -1,7 +1,10 @@
 import { NextResponse } from 'next/server'
+import { promises as fs } from 'fs'
+import path from 'path'
 
 const BLOB_ID = process.env.JSONBLOB_TESTIMONIALS_ID
 const BLOB_URL = `https://jsonblob.com/api/jsonBlob/${BLOB_ID}`
+const DATA_FILE = path.join(process.cwd(), 'src', 'data', 'testimonials.json')
 
 interface StoredTestimonial {
   name: string
@@ -10,24 +13,43 @@ interface StoredTestimonial {
   createdAt: string
 }
 
-async function readAll(): Promise<StoredTestimonial[]> {
-  if (!BLOB_ID) return []
+async function readLocal(): Promise<StoredTestimonial[]> {
   try {
-    const res = await fetch(BLOB_URL)
-    if (!res.ok) return []
-    return await res.json()
+    const raw = await fs.readFile(DATA_FILE, 'utf-8')
+    return JSON.parse(raw)
   } catch {
     return []
   }
 }
 
-async function writeAll(data: StoredTestimonial[]): Promise<boolean> {
+async function writeLocal(data: StoredTestimonial[]): Promise<boolean> {
+  try {
+    await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2), 'utf-8')
+    return true
+  } catch {
+    return false
+  }
+}
+
+async function readRemote(): Promise<StoredTestimonial[] | null> {
+  if (!BLOB_ID) return null
+  try {
+    const res = await fetch(BLOB_URL, { signal: AbortSignal.timeout(3000) })
+    if (!res.ok) return null
+    return await res.json()
+  } catch {
+    return null
+  }
+}
+
+async function writeRemote(data: StoredTestimonial[]): Promise<boolean> {
   if (!BLOB_ID) return false
   try {
     const res = await fetch(BLOB_URL, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
+      signal: AbortSignal.timeout(3000),
     })
     return res.ok
   } catch {
@@ -36,8 +58,12 @@ async function writeAll(data: StoredTestimonial[]): Promise<boolean> {
 }
 
 export async function GET() {
-  const testimonials = await readAll()
-  return NextResponse.json(testimonials)
+  const remote = await readRemote()
+  if (remote) {
+    return NextResponse.json(remote)
+  }
+  const local = await readLocal()
+  return NextResponse.json(local)
 }
 
 export async function POST(request: Request) {
@@ -56,11 +82,13 @@ export async function POST(request: Request) {
       createdAt: new Date().toISOString(),
     }
 
-    const all = await readAll()
+    const all = await readLocal()
     all.unshift(entry)
-    const saved = await writeAll(all)
 
-    if (!saved) {
+    const remoteSaved = await writeRemote(all)
+    const localSaved = await writeLocal(all)
+
+    if (!remoteSaved && !localSaved) {
       return NextResponse.json({ error: 'Failed to save.' }, { status: 500 })
     }
 
