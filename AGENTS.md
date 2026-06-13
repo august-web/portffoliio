@@ -62,7 +62,6 @@ src/styles/globals.css
 ### Future ideas (not yet done)
 
 - Add a `color-scheme` meta tag to `<html>` for proper browser form styling in light mode
-- Hero `#F5C518` gold color is still hardcoded for the "Software Developer" subtitle in some places
 - Consider adding a theme toggle (though `prefers-color-scheme` is simpler)
 - Populate testimonials section with real client reviews
 - Desktop nav could use a sticky header that's even more visually distinct (e.g., bottom border highlight)
