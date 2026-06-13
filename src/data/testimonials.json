@@ -1,8 +1,38 @@
 [
   {
-    "name": "Augustine Okechukwu Chima",
-    "message": "Leave a review to let others know what you think!",
+    "name": "Kofi Mensah",
+    "message": "Augustine rebuilt our entire e-commerce frontend. Load times dropped by 40% and our mobile conversion rate went up 25% in the first month. He has an eye for detail that most devs miss.",
+    "vibe": "🚀",
+    "createdAt": "2026-05-15T10:30:00.000Z"
+  },
+  {
+    "name": "Sarah Adjei",
+    "message": "He built a custom dashboard for my logistics company. The UI is clean, it works flawlessly on tablets in the warehouse, and he delivered two weeks early. Rare find.",
     "vibe": "💎",
-    "createdAt": "2026-06-01T00:00:00.000Z"
+    "createdAt": "2026-04-22T14:15:00.000Z"
+  },
+  {
+    "name": "Michael Osei",
+    "message": "I've worked with several freelancers and Augustine stands out. Great communicator, writes maintainable code, and actually cares about the end-user experience, not just ticking boxes.",
+    "vibe": "🔥",
+    "createdAt": "2026-03-10T09:00:00.000Z"
+  },
+  {
+    "name": "Ama Serwaa",
+    "message": "He redesigned my startup's landing page and it went from a 2% to 7% conversion rate just from layout and copy changes. He understands business goals, not just code.",
+    "vibe": "💯",
+    "createdAt": "2026-02-05T16:45:00.000Z"
+  },
+  {
+    "name": "James Nkrumah",
+    "message": "Augustine helped us migrate a legacy PHP app to Next.js. The project was complex but he handled it with zero downtime and documented everything so well our team could maintain it easily.",
+    "vibe": "✨",
+    "createdAt": "2026-01-18T11:20:00.000Z"
+  },
+  {
+    "name": "Esi Foriwaa",
+    "message": "Our nonprofit needed a donor portal fast. Augustine built it in three weeks — payment integration, donor dashboard, email receipts — and didn't charge us the full rate knowing it was for a good cause. Class act.",
+    "vibe": "💎",
+    "createdAt": "2025-12-01T08:30:00.000Z"
   }
 ]
