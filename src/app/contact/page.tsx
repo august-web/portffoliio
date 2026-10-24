@@ -1,14 +1,14 @@
 'use client'
 
-import React, { useState, FormEvent } from 'react'
-import { motion } from 'framer-motion'
+import React, { useEffect, useRef, useState, FormEvent } from 'react'
+import { ArrowUpRight, CheckCircle2, Send } from 'lucide-react'
 import { iconMap } from '../../components/ui/Icons'
 
 const contactInfo = [
-  { label: 'user', value: 'Augustine Okechukwu Chima' },
-  { label: 'status', value: 'Available for opportunities' },
-  { label: 'location', value: 'Ghana / Remote' },
-  { label: 'response', value: 'Typically within 24 hours' },
+  { label: 'Name', value: 'Augustine Okechukwu Chima' },
+  { label: 'Availability', value: 'Available for opportunities' },
+  { label: 'Based in', value: 'Ghana / Remote' },
+  { label: 'Response', value: 'Typically within 24 hours' },
 ]
 
 const links = [
@@ -18,27 +18,19 @@ const links = [
   { label: 'WhatsApp', href: 'https://wa.me/233533027046' },
 ]
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0 },
-}
-
 const inputBase =
-  'w-full border border-[var(--color-line)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-text)] outline-none transition-all duration-200 focus:border-[var(--color-accent)] focus:shadow-[0_0_0_1px_var(--color-accent)] placeholder:text-[var(--color-muted)]/35'
+  'w-full min-h-12 rounded-lg border border-[var(--color-line)] bg-[var(--color-bg)] px-4 py-3 text-base text-[var(--color-text)] transition-colors focus:border-[var(--color-accent)] focus:outline-2 focus:outline-offset-2 focus:outline-[var(--color-accent)] placeholder:text-[var(--color-muted)] motion-reduce:transition-none'
 
 export default function ContactPage() {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
   const [sending, setSending] = useState(false)
+  const successRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (submitted) successRef.current?.focus({ preventScroll: true })
+  }, [submitted])
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
@@ -67,56 +59,34 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="py-12 max-md:py-8">
-      <motion.div
-        className="mb-14 max-md:mb-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider mb-4 m-0">
-          Get in touch
-        </p>
-        <h1 className="text-[5.6rem] leading-[0.9] uppercase m-0 mb-4 max-md:text-[3.6rem] max-sm:text-[2.8rem]">
-          Contact
-        </h1>
-        <p className="text-[var(--color-muted)] text-lg max-w-[580px] m-0 max-sm:text-base">
+    <div className="py-12 md:py-16">
+      <header className="mb-10 md:mb-12">
+        <h1 className="m-0 text-4xl leading-tight tracking-tight md:text-6xl">Contact</h1>
+        <p className="mt-4 mb-0 max-w-xl text-base leading-relaxed text-[var(--color-muted)]">
           Have a role, project, or collaboration in mind? Reach out — I&apos;ll get back to you
           within 24 hours.
         </p>
-      </motion.div>
+      </header>
 
-      <div className="grid grid-cols-[1fr_1.2fr] gap-10 items-start max-lg:grid-cols-1">
-        <motion.div
-          className="grid gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-        >
-          <motion.div
-            className="border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg overflow-hidden"
-            variants={itemVariants}
+      <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <aside className="min-w-0 lg:pt-2">
+          <h2 className="m-0 text-xl font-medium">Get in touch</h2>
+          <a
+            href="mailto:augustinechima17@gmail.com"
+            className="mt-4 inline-flex min-h-11 max-w-full items-center gap-3 text-base text-[var(--color-accent)] underline decoration-[var(--color-line)] hover:decoration-current sm:text-lg"
           >
-            <div className="flex gap-2 px-4 py-3.5 border-b border-[var(--color-line)]">
-              <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-danger)]" />
-              <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent-2)]" />
-              <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent)]" />
-            </div>
-            <div className="p-5 font-mono text-sm">
-              {contactInfo.map((line) => (
-                <p
-                  key={line.label}
-                  className="mb-4 text-[var(--color-text)] last:mb-0 leading-relaxed"
-                >
-                  <span className="text-[var(--color-accent)]">$ {line.label}</span>
-                  <br />
-                  <span className="pl-5">{line.value}</span>
-                </p>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div className="flex flex-wrap gap-3" variants={itemVariants}>
+            <span className="min-w-0 break-all">augustinechima17@gmail.com</span>
+            <ArrowUpRight size={18} className="shrink-0" aria-hidden="true" />
+          </a>
+          <dl className="my-8 border-y border-[var(--color-line)] py-6 text-sm">
+            {contactInfo.map((line) => (
+              <div key={line.label} className="grid gap-1 py-2 sm:grid-cols-[100px_1fr] sm:gap-4">
+                <dt className="text-[var(--color-muted)]">{line.label}</dt>
+                <dd className="m-0 leading-relaxed">{line.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
             {links.map((link) => {
               const Icon = iconMap[link.label]
               return (
@@ -124,53 +94,56 @@ export default function ContactPage() {
                   key={link.label}
                   href={link.href}
                   target={link.href.startsWith('mailto') ? undefined : '_blank'}
-                  rel={link.href.startsWith('mailto') ? undefined : 'noreferrer'}
-                  className="border border-[var(--color-line)] bg-white/3 px-4 py-3 text-xs font-extrabold uppercase tracking-wider no-underline text-inherit hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] hover:bg-[rgba(102,242,194,0.06)] transition-all duration-200 inline-flex items-center justify-center gap-2 max-sm:w-full max-sm:min-h-12"
+                  rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                  className="inline-flex min-h-11 items-center gap-2 text-sm text-[var(--color-muted)] no-underline transition-colors hover:text-[var(--color-accent)] motion-reduce:transition-none"
                 >
-                  {Icon && <Icon />}
+                  <span aria-hidden="true">{Icon && <Icon />}</span>
                   {link.label}
                 </a>
               )
             })}
-          </motion.div>
-        </motion.div>
+          </div>
+        </aside>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-        >
+        <div className="min-w-0">
           {submitted ? (
-            <motion.div
-              className="border border-[var(--color-accent)] bg-[rgba(102,242,194,0.06)] p-10 text-center shadow-[0_24px_80px_rgba(0,0,0,0.28)]"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+            <div
+              ref={successRef}
+              role="status"
+              tabIndex={-1}
+              className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-panel)] p-6 sm:p-8"
             >
-              <p className="text-[var(--color-accent)] font-bold text-xl m-0 mb-3">Message sent!</p>
-              <p className="text-[var(--color-muted)] m-0">
+              <CheckCircle2
+                size={32}
+                className="mb-5 text-[var(--color-accent)]"
+                aria-hidden="true"
+              />
+              <h2 className="m-0 mb-3 text-2xl font-medium">Message sent!</h2>
+              <p className="m-0 text-base leading-relaxed text-[var(--color-muted)]">
                 Thanks for reaching out. I&apos;ll get back to you as soon as possible.
               </p>
-            </motion.div>
+            </div>
           ) : (
-            <div className="border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg overflow-hidden">
-              <div className="flex gap-2 px-4 py-3.5 border-b border-[var(--color-line)]">
-                <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-danger)]" />
-                <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent-2)]" />
-                <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent)]" />
-              </div>
-
-              <form className="p-6 grid gap-5 max-sm:p-5" onSubmit={handleSubmit}>
+            <div className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-panel)] p-6 sm:p-8">
+              <h2 id="contact-form-heading" className="m-0 mb-6 text-2xl font-medium">
+                Send a message
+              </h2>
+              <form
+                className="grid gap-5"
+                onSubmit={handleSubmit}
+                aria-labelledby="contact-form-heading"
+                aria-busy={sending}
+              >
                 <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
                   <div className="grid gap-2">
-                    <label
-                      htmlFor="name"
-                      className="text-xs font-extrabold uppercase tracking-wider text-[var(--color-muted)]"
-                    >
+                    <label htmlFor="name" className="text-sm font-medium text-[var(--color-text)]">
                       Your Name
                     </label>
                     <input
                       id="name"
+                      name="name"
                       type="text"
+                      autoComplete="name"
                       required
                       value={formState.name}
                       onChange={(e) => setFormState((s) => ({ ...s, name: e.target.value }))}
@@ -179,15 +152,14 @@ export default function ContactPage() {
                     />
                   </div>
                   <div className="grid gap-2">
-                    <label
-                      htmlFor="email"
-                      className="text-xs font-extrabold uppercase tracking-wider text-[var(--color-muted)]"
-                    >
+                    <label htmlFor="email" className="text-sm font-medium text-[var(--color-text)]">
                       Your Email
                     </label>
                     <input
                       id="email"
+                      name="email"
                       type="email"
+                      autoComplete="email"
                       required
                       value={formState.email}
                       onChange={(e) => setFormState((s) => ({ ...s, email: e.target.value }))}
@@ -198,14 +170,12 @@ export default function ContactPage() {
                 </div>
 
                 <div className="grid gap-2">
-                  <label
-                    htmlFor="message"
-                    className="text-xs font-extrabold uppercase tracking-wider text-[var(--color-muted)]"
-                  >
+                  <label htmlFor="message" className="text-sm font-medium text-[var(--color-text)]">
                     Your Message
                   </label>
                   <textarea
                     id="message"
+                    name="message"
                     required
                     rows={6}
                     value={formState.message}
@@ -216,27 +186,26 @@ export default function ContactPage() {
                 </div>
 
                 {error && (
-                  <motion.p
-                    className="text-[var(--color-danger)] text-sm m-0 flex items-center gap-2"
+                  <p
+                    className="m-0 rounded-lg border border-[var(--color-danger)] p-4 text-sm leading-relaxed text-[var(--color-danger)]"
                     role="alert"
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
                   >
-                    <span>{error}</span>
-                  </motion.p>
+                    {error}
+                  </p>
                 )}
 
                 <button
                   type="submit"
                   disabled={sending}
-                  className="bg-[var(--color-accent)] text-[#04100c] border border-[var(--color-accent)] px-5 py-3.5 text-xs font-extrabold uppercase tracking-wider cursor-pointer hover:brightness-110 transition-all duration-200 w-fit max-sm:w-full max-sm:min-h-14 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-accent)] bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-[var(--color-on-accent)] transition-colors hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transition-none sm:w-fit"
                 >
+                  <Send size={16} aria-hidden="true" />
                   {sending ? 'Sending...' : 'Send Your Message'}
                 </button>
               </form>
             </div>
           )}
-        </motion.div>
+        </div>
       </div>
     </div>
   )
