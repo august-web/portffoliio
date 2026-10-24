@@ -7,6 +7,13 @@ import PageTransition from '../components/layout/PageTransition'
 import ScrollProgress from '../components/ui/ScrollProgress'
 import BackToTop from '../components/ui/BackToTop'
 import type { Metadata, Viewport } from 'next'
+import localFont from 'next/font/local'
+
+const geist = localFont({
+  src: '../../public/fonts/geist-latin.woff2',
+  variable: '--font-geist',
+  display: 'swap',
+})
 
 const baseUrl = 'https://augustineportfolio.dev'
 
@@ -87,7 +94,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={geist.variable}>
       <body>
         <script
           type="application/ld+json"
@@ -95,7 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <SkipLink />
         <ScrollProgress />
-        <div className="w-[min(1180px,calc(100%_-_32px))] mx-auto max-md:w-[min(100%_-_24px,720px)] max-sm:w-[min(100%_-_20px,420px)]">
+        <div className="portfolio-shell">
           <Navbar />
           <main id="main-content" tabIndex={-1}>
             <PageTransition>{children}</PageTransition>
