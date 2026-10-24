@@ -70,10 +70,7 @@ export default function Testimonials() {
   }
 
   return (
-    <section
-      className="py-[82px] border-t border-[var(--color-line)] max-md:py-[58px]"
-      id="testimonials"
-    >
+    <section className="section-spacing" id="testimonials">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -83,16 +80,14 @@ export default function Testimonials() {
         <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider mb-4 m-0 max-sm:text-[0.72rem]">
           The People&apos;s Court
         </p>
-        <h2 className="max-w-[820px] mb-3 text-[4.25rem] leading-none m-0 max-md:text-[2.7rem] max-sm:text-[2.1rem] max-sm:leading-[1.04]">
-          Drop your verdict.
-        </h2>
+        <h2 className="section-heading mb-3">Drop your verdict.</h2>
         <p className="text-[var(--color-muted)] text-base m-0 mb-12 max-sm:text-sm max-sm:mb-8">
           Seen enough? Leave a review — good, bad, or funny. It&apos;s all vibes.
         </p>
       </motion.div>
 
       <motion.div
-        className="border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg overflow-hidden mb-12"
+        className="rounded-2xl border border-[var(--color-line)] bg-[var(--color-panel)] overflow-hidden mb-12"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
@@ -112,7 +107,7 @@ export default function Testimonials() {
           <div className="grid gap-2">
             <label
               htmlFor="testimonial-name"
-              className="text-[10px] font-extrabold uppercase tracking-wider text-[var(--color-muted)]"
+              className="text-xs font-semibold text-[var(--color-muted)]"
             >
               Your name <span className="text-[var(--color-danger)]">*</span>
             </label>
@@ -123,7 +118,7 @@ export default function Testimonials() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="ur name bestie"
-              className="w-full border border-[var(--color-line)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-text)] outline-none transition-all duration-200 focus:border-[var(--color-accent)] focus:shadow-[0_0_0_1px_var(--color-accent)] placeholder:text-[var(--color-muted)]/35"
+              className="w-full border border-[var(--color-line)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-text)] outline-none transition-all duration-200 focus:border-[var(--color-accent)] focus:shadow-[0_0_0_1px_var(--color-accent)] placeholder:text-[var(--color-muted)]"
             />
           </div>
 
@@ -152,7 +147,7 @@ export default function Testimonials() {
           <div className="grid gap-2">
             <label
               htmlFor="testimonial-message"
-              className="text-[10px] font-extrabold uppercase tracking-wider text-[var(--color-muted)]"
+              className="text-xs font-semibold text-[var(--color-muted)]"
             >
               Your message <span className="text-[var(--color-danger)]">*</span>
             </label>
@@ -163,7 +158,7 @@ export default function Testimonials() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="say sumn nice... or just go off idc"
-              className="w-full border border-[var(--color-line)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-text)] outline-none transition-all duration-200 focus:border-[var(--color-accent)] focus:shadow-[0_0_0_1px_var(--color-accent)] placeholder:text-[var(--color-muted)]/35 resize-y min-h-[100px]"
+              className="w-full border border-[var(--color-line)] bg-[var(--color-bg)] px-4 py-3 text-[var(--color-text)] outline-none transition-all duration-200 focus:border-[var(--color-accent)] focus:shadow-[0_0_0_1px_var(--color-accent)] placeholder:text-[var(--color-muted)] resize-y min-h-[100px]"
             />
           </div>
 
@@ -181,7 +176,7 @@ export default function Testimonials() {
           <button
             type="submit"
             disabled={sending}
-            className="bg-[var(--color-accent)] text-[#04100c] border border-[var(--color-accent)] px-5 py-3.5 text-xs font-extrabold uppercase tracking-wider cursor-pointer hover:brightness-110 transition-all duration-200 w-fit max-sm:w-full max-sm:min-h-14 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-[var(--color-accent)] text-[var(--color-on-accent)] border border-[var(--color-accent)] px-5 py-3.5 text-xs font-extrabold uppercase tracking-wider cursor-pointer hover:brightness-110 transition-all duration-200 w-fit max-sm:w-full max-sm:min-h-14 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {sending ? 'sending the vibe...' : "drop it like it's hot 🔥"}
           </button>
@@ -218,7 +213,7 @@ export default function Testimonials() {
           {testimonials.map((item, i) => (
             <motion.div
               key={`${item.createdAt}-${i}`}
-              className="flex flex-col border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg p-6 transition-all duration-300 hover:border-[var(--color-accent)]/40"
+              className="flex flex-col rounded-2xl border border-[var(--color-line)] bg-[var(--color-panel)] p-6 transition-all duration-300 hover:border-[var(--color-accent)]/40"
               variants={cardVariants}
             >
               {item.vibe && <p className="text-2xl m-0 mb-3">{item.vibe}</p>}
