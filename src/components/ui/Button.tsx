@@ -13,12 +13,12 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const base =
-    'inline-flex items-center justify-center text-xs font-extrabold tracking-wider uppercase px-3.5 py-3 border transition-colors duration-200 no-underline max-sm:w-full max-sm:min-h-14'
+    'inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold border transition-colors duration-200 no-underline'
   const variants = {
     primary:
-      'bg-[var(--color-accent)] text-[#04100c] border-[var(--color-accent)] hover:brightness-110',
+      'bg-[var(--color-accent)] text-[var(--color-on-accent)] border-[var(--color-accent)] hover:brightness-110',
     secondary:
-      'border-[var(--color-line)] bg-white/3 text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]',
+      'border-[var(--color-line)] bg-[var(--color-panel)] text-[var(--color-text)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]',
   }
 
   return (
