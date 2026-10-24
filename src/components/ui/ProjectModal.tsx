@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useId, useRef } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowUpRight, X } from 'lucide-react'
 import type { Project } from '../../data/projects'
 
 interface ProjectModalProps {
@@ -11,125 +11,104 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-    },
-    [onClose],
-  )
+  const headingId = useId()
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const isOpen = project !== null
 
   useEffect(() => {
-    if (project) {
-      document.addEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = 'hidden'
-    }
+    if (!isOpen) return
+    const dialog = dialogRef.current
+    const previousActiveElement =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null
+    const previousOverflow = document.body.style.overflow
+    dialog?.showModal()
+    closeButtonRef.current?.focus({ preventScroll: true })
+    document.body.style.overflow = 'hidden'
     return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = ''
+      dialog?.close()
+      document.body.style.overflow = previousOverflow
+      previousActiveElement?.focus({ preventScroll: true })
     }
-  }, [project, handleKeyDown])
+  }, [isOpen])
+
+  if (!project) return null
 
   return (
-    <AnimatePresence>
-      {project && (
-        <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 max-sm:p-3"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
+    <dialog
+      ref={dialogRef}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={headingId}
+      onCancel={(event) => {
+        event.preventDefault()
+        onClose()
+      }}
+      onClick={(event) => {
+        if (event.target === event.currentTarget) onClose()
+      }}
+      onKeyDown={(event) => {
+        if (event.key !== 'Tab') return
+        const focusable = event.currentTarget.querySelectorAll<HTMLElement>('button, a[href]')
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault()
+          last.focus()
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault()
+          first.focus()
+        }
+      }}
+      className="m-auto max-h-[90dvh] w-[calc(100%-32px)] max-w-2xl overflow-y-auto rounded-2xl border border-[var(--color-line)] bg-[var(--color-panel)] p-0 text-[var(--color-text)] backdrop:bg-black/70"
+    >
+      <div className="flex justify-end border-b border-[var(--color-line)] px-3 py-2">
+        <button
+          ref={closeButtonRef}
+          type="button"
+          onClick={onClose}
+          className="inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-lg px-3 text-sm font-medium text-[var(--color-muted)] transition-colors hover:text-[var(--color-text)]"
         >
-          <motion.div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-          />
-
-          <motion.div
-            className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-[var(--color-line)] bg-[var(--color-bg)] shadow-[0_32px_120px_rgba(0,0,0,0.5)]"
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.25 }}
-          >
-            <div className="flex gap-2 px-4 py-3 border-b border-[var(--color-line)]">
-              <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-danger)]" />
-              <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent-2)]" />
-              <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent)]" />
-              <button
-                type="button"
-                onClick={onClose}
-                className="ml-auto text-[var(--color-muted)] hover:text-[var(--color-text)] transition-colors text-xs font-bold uppercase tracking-wider"
-              >
-                Close
-              </button>
-            </div>
-
-            <div className="relative w-full h-56 max-sm:h-44">
-              <Image
-                src={project.image}
-                alt={`${project.name} screenshot`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 672px"
-              />
-            </div>
-
-            <div className="p-6 max-sm:p-4">
-              <p className="text-[10px] font-extrabold uppercase tracking-wider text-[var(--color-accent-2)] m-0 mb-1">
-                {project.type}
-              </p>
-              <h2 className="text-2xl font-bold m-0 mb-3 max-sm:text-xl">{project.name}</h2>
-              <p className="text-[var(--color-muted)] text-sm leading-relaxed m-0 mb-5">
-                {project.description}
-              </p>
-
-              {project.techStack.length > 0 && (
-                <div className="mb-5">
-                  <p className="text-[10px] font-extrabold uppercase tracking-wider text-[var(--color-accent)] m-0 mb-2">
-                    Technologies
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1.5 border border-[var(--color-line)] bg-[rgba(102,242,194,0.04)] text-[var(--color-muted)]"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-[10px] font-extrabold uppercase tracking-wider px-4 py-3 border border-[var(--color-accent)] bg-[var(--color-accent)] text-[#04100c] transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_20px_rgba(102,242,194,0.3)] no-underline"
-              >
-                Visit Live Site
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" x2="21" y1="14" y2="3" />
-                </svg>
-              </a>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          Close <X size={18} aria-hidden="true" />
+        </button>
+      </div>
+      <div className="relative aspect-[16/10] w-full bg-[var(--color-panel-strong)]">
+        <Image
+          src={project.image}
+          alt={`${project.name} screenshot`}
+          fill
+          className="object-cover object-top"
+          sizes="(min-width: 704px) 672px, calc(100vw - 32px)"
+        />
+      </div>
+      <div className="p-5 sm:p-8">
+        <p className="mb-2 mt-0 text-sm text-[var(--color-muted)]">{project.type}</p>
+        <h2 id={headingId} className="mb-4 mt-0 text-2xl font-semibold leading-tight sm:text-3xl">
+          {project.name}
+        </h2>
+        <p className="mb-6 mt-0 text-base leading-relaxed text-[var(--color-muted)]">
+          {project.description}
+        </p>
+        {project.techStack.length > 0 && (
+          <div className="mb-6">
+            <h3 className="mb-2 mt-0 text-sm font-semibold">Technologies</h3>
+            <ul className="m-0 flex list-none flex-wrap gap-x-4 gap-y-1 p-0 text-sm leading-relaxed text-[var(--color-muted)]">
+              {project.techStack.map((tech) => (
+                <li key={tech}>{tech}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Visit ${project.name} website`}
+          className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-[var(--color-on-accent)] no-underline transition-colors hover:brightness-110"
+        >
+          Visit website <ArrowUpRight size={18} aria-hidden="true" />
+        </a>
+      </div>
+    </dialog>
   )
 }
