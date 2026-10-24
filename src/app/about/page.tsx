@@ -1,8 +1,6 @@
-'use client'
-
 import React from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import Button from '../../components/ui/Button'
 import SkillIcon from '../../components/ui/SkillIcon'
 
 const stats = [
@@ -10,13 +8,6 @@ const stats = [
   { value: '30+', label: 'Projects Completed' },
   { value: 'Ghana', label: 'Location' },
   { value: 'Online', label: 'Status' },
-]
-
-const contactInfo = [
-  { label: 'role', value: 'Software Developer' },
-  { label: 'focus', value: 'Frontend, UI, Full-stack' },
-  { label: 'location', value: 'Ghana / Remote' },
-  { label: 'status', value: 'Open to opportunities' },
 ]
 
 const timeline = [
@@ -77,184 +68,116 @@ const skillGroups = [
   },
 ]
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0 },
-}
-
 export default function AboutPage() {
   return (
-    <div className="py-12 max-md:py-8">
-      <motion.div
-        className="grid grid-cols-[auto_1fr] gap-12 items-start max-md:grid-cols-1 max-md:gap-8"
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-      >
-        <motion.div className="shrink-0 max-md:mx-auto" variants={itemVariants}>
-          <div className="relative w-[260px] h-[260px] max-md:w-[200px] max-md:h-[200px] max-sm:w-[180px] max-sm:h-[180px]">
+    <div className="py-12 md:py-16">
+      <header className="mb-10 md:mb-12">
+        <h1 className="m-0 text-4xl leading-tight tracking-tight md:text-6xl">About me</h1>
+      </header>
+      <section className="grid items-start gap-8 lg:grid-cols-[300px_1fr] lg:gap-16">
+        <div className="w-40 sm:w-60 lg:w-full">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-[var(--color-panel)]">
             <Image
               src="/images/profile.png"
               alt="Augustine Okechukwu Chima"
               fill
-              className="object-cover rounded-2xl"
+              sizes="(min-width: 1024px) 300px, (min-width: 640px) 240px, 160px"
+              className="object-cover object-top"
               priority
             />
-            <div className="absolute -bottom-2.5 -right-2.5 border border-[var(--color-line)] bg-[var(--color-panel)]/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl max-sm:px-2.5 max-sm:py-1">
-              <span className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-[var(--color-accent)] max-sm:text-[8px]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] shadow-[0_0_12px_var(--color-accent)]" />
-                Open to Work
-              </span>
-            </div>
           </div>
-        </motion.div>
-
-        <motion.div className="min-w-0" variants={itemVariants}>
-          <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider mb-4">
-            About Me
+          <p className="mt-4 mb-0 flex items-center gap-2 text-sm text-[var(--color-accent)]">
+            <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
+            Open to Work
           </p>
-          <h1 className="text-[4.5rem] leading-[0.9] uppercase m-0 mb-6 max-md:text-[3.2rem] max-sm:text-[2.4rem] max-[400px]:text-[1.9rem]">
-            Augustine
-            <br />
-            Okechukwu
-            <br />
-            Chima
-          </h1>
-          <p className="text-[var(--color-accent-2)] text-lg font-black uppercase tracking-wider mb-6 break-words max-sm:text-base max-sm:mb-4">
+        </div>
+
+        <div className="min-w-0 lg:pt-3">
+          <h2 className="m-0 max-w-xl text-3xl leading-tight font-medium sm:text-4xl lg:text-5xl">
+            Augustine Okechukwu Chima
+          </h2>
+          <p className="mt-5 mb-6 max-w-xl text-base leading-relaxed text-[var(--color-accent)] sm:text-lg">
             Software Developer &bull; Frontend Specialist &bull; UI Architect
           </p>
-          <p className="text-[var(--color-muted)] text-base leading-relaxed m-0 max-w-[640px] max-sm:text-sm">
+          <p className="m-0 max-w-2xl text-base leading-relaxed text-[var(--color-muted)]">
             I design and build responsive web experiences that feel clear, useful, and considered
             from the first screen to the final detail. With a strong foundation in modern frontend
             technologies and a keen eye for interaction design, I craft digital products that are
             both beautiful and functional.
           </p>
-        </motion.div>
-      </motion.div>
-
-      <motion.div
-        className="py-12 my-14 border-y border-[var(--color-line)] max-md:py-10 max-md:my-10"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-      >
-        <div className="grid grid-cols-4 gap-6 max-md:grid-cols-2 max-sm:gap-4">
-          {stats.map((stat) => (
-            <motion.div
-              key={stat.label}
-              className="border border-[var(--color-line)] bg-[var(--color-panel)]/80 backdrop-blur-lg p-5 text-center"
-              variants={itemVariants}
-            >
-              <p className="text-2xl font-black text-[var(--color-accent)] m-0 mb-1.5">
-                {stat.value}
-              </p>
-              <p className="text-[10px] font-extrabold uppercase tracking-wider text-[var(--color-muted)] m-0">
-                {stat.label}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-
-      <section className="mb-16 max-md:mb-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider mb-2">
-            Career
-          </p>
-          <h2 className="text-[3.2rem] leading-[0.95] uppercase m-0 mb-10 max-md:text-[2.4rem] max-sm:text-[1.9rem] max-sm:mb-8">
-            Experience
-          </h2>
-        </motion.div>
-
-        <div className="relative">
-          <div className="absolute left-[19px] top-0 bottom-0 w-px bg-[var(--color-line)]" />
-
-          {timeline.map((item, i) => (
-            <motion.div
-              key={item.year}
-              className="relative pl-14 pb-12 last:pb-0 max-sm:pl-12 max-sm:pb-10"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-            >
-              <div className="absolute left-[12px] top-1 w-[15px] h-[15px] rounded-full border-2 border-[var(--color-accent)] bg-[var(--color-panel)]" />
-              <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider m-0 mb-2">
-                {item.year}
-              </p>
-              <h3 className="text-xl font-bold m-0 mb-0.5 max-sm:text-lg">{item.role}</h3>
-              <p className="text-[var(--color-accent-2)] text-sm font-bold uppercase tracking-wider m-0 mb-2">
-                {item.company}
-              </p>
-              <p className="text-[var(--color-muted)] text-sm leading-relaxed m-0 max-w-[600px]">
-                {item.description}
-              </p>
-            </motion.div>
-          ))}
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button href="/projects">View my work</Button>
+            <Button href="/contact" variant="secondary">
+              Reach out
+            </Button>
+          </div>
         </div>
       </section>
 
-      <section>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="text-[var(--color-accent)] text-xs font-black uppercase tracking-wider mb-2">
-            Capabilities
-          </p>
-          <h2 className="text-[3.2rem] leading-[0.95] uppercase m-0 mb-10 max-md:text-[2.4rem] max-sm:text-[1.9rem] max-sm:mb-8">
-            Skills &amp; Tools
-          </h2>
-        </motion.div>
+      <dl className="my-12 grid grid-cols-2 gap-x-6 gap-y-8 border-y border-[var(--color-line)] py-8 md:my-16 md:grid-cols-4">
+        {stats.map((stat) => (
+          <div key={stat.label} className="flex flex-col gap-2">
+            <dt className="text-sm text-[var(--color-muted)]">{stat.label}</dt>
+            <dd className="order-first m-0 text-2xl font-medium tabular-nums">{stat.value}</dd>
+          </div>
+        ))}
+      </dl>
 
-        <div className="grid grid-cols-2 gap-6 max-md:grid-cols-1">
-          {skillGroups.map((group, i) => (
-            <motion.div
-              key={group.category}
-              className="border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg overflow-hidden"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
+      <section
+        aria-labelledby="experience-heading"
+        className="grid gap-8 pb-12 md:pb-16 lg:grid-cols-[300px_1fr] lg:gap-16"
+      >
+        <h2 id="experience-heading" className="section-heading">
+          Experience
+        </h2>
+        <ol className="m-0 list-none p-0">
+          {timeline.map((item) => (
+            <li
+              key={`${item.year}-${item.role}`}
+              className="relative border-l border-[var(--color-line)] pb-10 pl-6 last:pb-0 sm:pl-8"
             >
-              <div className="flex gap-2 px-4 py-3 border-b border-[var(--color-line)]">
-                <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-danger)]" />
-                <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent-2)]" />
-                <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent)]" />
-              </div>
-              <div className="p-5">
-                <p className="text-[var(--color-accent-2)] text-[10px] font-black uppercase tracking-wider m-0 mb-4">
-                  {group.category}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {group.items.map((skill) => (
-                    <span
-                      key={skill}
-                      className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider px-3 py-2 border border-[var(--color-line)] bg-[rgba(102,242,194,0.04)] text-[var(--color-muted)]"
-                    >
+              <span
+                className="absolute top-2 -left-[4px] h-2 w-2 rounded-full bg-[var(--color-accent)]"
+                aria-hidden="true"
+              />
+              <p className="m-0 text-sm tabular-nums text-[var(--color-muted)]">{item.year}</p>
+              <h3 className="mt-2 mb-0 text-xl font-medium sm:text-2xl">{item.role}</h3>
+              <p className="mt-1 mb-0 text-sm text-[var(--color-accent)]">{item.company}</p>
+              <p className="mt-3 mb-0 max-w-2xl text-base leading-relaxed text-[var(--color-muted)]">
+                {item.description}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section
+        aria-labelledby="skills-heading"
+        className="section-spacing grid gap-8 lg:grid-cols-[300px_1fr] lg:gap-16"
+      >
+        <h2 id="skills-heading" className="section-heading">
+          Skills &amp; Tools
+        </h2>
+        <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+          {skillGroups.map((group) => (
+            <div key={group.category}>
+              <h3 className="m-0 border-b border-[var(--color-line)] pb-3 text-lg font-medium">
+                {group.category}
+              </h3>
+              <ul className="mt-4 mb-0 grid list-none gap-3 p-0">
+                {group.items.map((skill) => (
+                  <li
+                    key={skill}
+                    className="flex items-center gap-3 text-sm text-[var(--color-muted)]"
+                  >
+                    <span className="text-[var(--color-accent)]" aria-hidden="true">
                       <SkillIcon name={skill} />
-                      {skill}
                     </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
       </section>
