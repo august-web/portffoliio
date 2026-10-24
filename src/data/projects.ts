@@ -11,6 +11,28 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    name: 'BaSuka Energy',
+    type: 'Energy & Infrastructure',
+    description:
+      'A corporate website for a women-led energy company developing power generation and infrastructure across Africa. Bringing its vision, partnerships, and energy ecosystem together in one digital home.',
+    image: '/images/projects/basuka-energy.png',
+    url: 'https://basukaenergy.com',
+    techStack: [],
+    featured: true,
+    category: 'Client Work',
+  },
+  {
+    name: 'FÉROCE Fashion',
+    type: 'Fashion & E-commerce',
+    description:
+      'An online storefront for a Dallas-designed luxury handbag and accessories brand. An editorial shopping experience that puts the collections, craftsmanship, and brand story at the forefront.',
+    image: '/images/projects/feroce-fashion.png',
+    url: 'https://ferocefashionff.com',
+    techStack: [],
+    featured: true,
+    category: 'Client Work',
+  },
+  {
     name: 'Nyas3',
     type: 'Platform',
     description:
@@ -113,3 +135,5 @@ export const projects: Project[] = [
     category: 'Frontend',
   },
 ]
+
+export const projectCategories = ['All', ...new Set(projects.map((project) => project.category))]
