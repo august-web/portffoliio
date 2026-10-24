@@ -1,8 +1,7 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
-import { useMousePosition } from './useMousePosition'
+import Image from 'next/image'
 
 const lines = [
   { key: 'user', value: 'Augustine Okechukwu Chima' },
@@ -13,59 +12,40 @@ const lines = [
   { key: 'stack', value: 'React, Next.js, TypeScript' },
 ]
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.3 },
-  },
-}
-
-const item = {
-  hidden: { opacity: 0, x: -10 },
-  show: { opacity: 1, x: 0 },
-}
-
 export default function TerminalCard() {
-  const { x, y } = useMousePosition()
-  const rotateX = (y - 0.5) * -4
-  const rotateY = (x - 0.5) * 4
-
   return (
-    <motion.div
-      className="min-w-0 overflow-hidden border border-[var(--color-line)] bg-[var(--color-panel)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-lg"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.2 }}
-      style={{ perspective: 1000 }}
-      whileHover={{ scale: 1.02 }}
-    >
-      <motion.div
-        style={{ rotateX, rotateY }}
-        transition={{ type: 'spring', stiffness: 150, damping: 15 }}
-      >
-        <div className="flex gap-2 px-4 py-4 border-b border-[var(--color-line)]">
-          <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-danger)]" />
-          <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent-2)]" />
-          <span className="w-[11px] h-[11px] rounded-full bg-[var(--color-accent)]" />
+    <div className="min-w-0 overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-panel)]">
+      <div className="flex items-center gap-3 border-b border-[var(--color-line)] px-6 py-5">
+        <Image
+          src="/images/profile.png"
+          alt="Augustine Okechukwu Chima"
+          width={56}
+          height={56}
+          priority
+          className="size-14 rounded-xl object-cover object-top"
+        />
+        <div>
+          <p className="m-0 text-sm font-medium">Developer profile</p>
+          <p className="mb-0 mt-1 text-xs text-[var(--color-muted)]">
+            A little about the person behind the work.
+          </p>
         </div>
-        <motion.div
-          className="p-5 font-mono text-sm max-sm:p-4 max-sm:text-[0.8rem]"
-          variants={container}
-          initial="hidden"
-          animate="show"
-        >
-          {lines.map((line) => (
-            <motion.p
-              key={line.key}
-              className="mb-3.5 text-[var(--color-text)] last:mb-0 break-words"
-              variants={item}
-            >
-              <span className="text-[var(--color-accent)]">{line.key}</span>: {line.value}
-            </motion.p>
-          ))}
-        </motion.div>
-      </motion.div>
-    </motion.div>
+      </div>
+      <dl className="m-0 grid gap-5 p-6 font-mono text-xs leading-relaxed sm:text-sm">
+        {lines.map((line) => (
+          <div
+            key={line.key}
+            className="grid grid-cols-[5rem_minmax(0,1fr)] gap-3 sm:grid-cols-[6rem_minmax(0,1fr)]"
+          >
+            <dt className="text-[var(--color-accent)]">{line.key}</dt>
+            <dd className="m-0 break-words text-[var(--color-text)]">{line.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <div className="flex items-center gap-2 border-t border-[var(--color-line)] px-6 py-4 text-xs text-[var(--color-muted)]">
+        <span className="size-1.5 rounded-full bg-[var(--color-accent)]" aria-hidden="true" />
+        Available for opportunities
+      </div>
+    </div>
   )
 }
