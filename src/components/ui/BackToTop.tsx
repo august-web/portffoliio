@@ -20,7 +20,7 @@ export default function BackToTop() {
         <motion.button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-6 right-6 z-50 w-11 h-11 flex items-center justify-center border border-[var(--color-line)] bg-[var(--color-panel)]/90 backdrop-blur-lg text-[var(--color-accent)] shadow-[0_8px_32px_rgba(0,0,0,0.4)] cursor-pointer hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-[#04100c] transition-colors duration-200"
+          className="fixed bottom-6 right-6 z-50 w-11 h-11 flex items-center justify-center border border-[var(--color-line)] bg-[var(--color-panel)]/90 backdrop-blur-lg text-[var(--color-accent)] shadow-[0_8px_32px_rgba(0,0,0,0.4)] cursor-pointer hover:border-[var(--color-accent)] hover:bg-[var(--color-accent)] hover:text-[var(--color-on-accent)] transition-colors duration-200"
           initial={{ opacity: 0, scale: 0.8, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 10 }}
